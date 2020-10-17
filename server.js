@@ -6,7 +6,9 @@ const PORT = process.env.PORT || 8080;
 const ENV = process.env.ENV || "development";
 const express = require("express");
 const bodyParser = require("body-parser");
+const cookieSession = require('cookie-session');
 const sass = require("node-sass-middleware");
+const bcrypt = require('bcrypt');
 const app = express();
 const morgan = require("morgan");
 
@@ -24,6 +26,7 @@ db.query("SELECT * FROM test;").then((res) => console.log(res.rows));
 app.use(morgan("dev"));
 
 app.set("view engine", "ejs");
+app.use(cookieSession({ name: 'session', keys: ['key1', 'key2'] }));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(
   "/styles",
@@ -54,6 +57,76 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
+//get register
+app.get('/register', (req, res) => {
+  res.render('register_url');
+});
+
+app.get('/login', (req, res) => {
+  res.render('login_url');
+});
+
+// register post 
+app.post('/register', (req, res) => {
+  const { username, password, email, phone } = req.body;
+  const hashedPassword = bcrypt.hashSync(password, 10);
+  const userValues = [username, hashedPassword, email, phone];
+
+  //  req.session.user_id = email;
+
+  //checks if info is present already 
+  const queryCheck = `
+  SELECT username, password, email, phone_number 
+  FROM users 
+  WHERE username = $1 AND password =$2 AND email =$3 AND phone_number =$4;
+  `;
+
+  db.query(queryCheck, userValues)
+    .then(result => {
+      if (result.rows.length > 0) {
+        res.status(400).send("Email is already in the system!");
+      } else {
+        //if info is not present then insert information
+        // no administrator present cuz set to default in database
+        const queryString = `INSERT INTO users (username, password, email, phone_number) VALUES ($1, $2, $3, $4) RETURNING *;`;
+        db.query(queryString, userValues)
+          .then(result => {
+            req.session.user_id = result.rows[0].email; //-> not working
+            // redirect to home listing --> change
+            res.redirect('/');
+          });
+      }
+    });
+});
+
+// login post 
+app.post('/login', (req, res) => {
+  const {email, password} = req.body;
+  const values = [email, password];
+  
+  const queryString = `
+  SELECT email, password
+  FROM users 
+  WHERE email = $1 AND password = $2;
+  `; 
+
+  db.query(queryString, values)
+  .then(result => {
+    const passwordCompare = bcrypt.compareSync(password, result.rows[0].password);
+    const emailCompare = (email!== result.rows[0].email); 
+
+    if(emailCompare && !passwordCompare) {
+      res.status(403).send("Email or Password don't match");
+    } else {
+      req.session.user_id = result.rows[0].email;
+      // redirect to home listing --> change
+      res.redirect('/');
+    }
+  });
+});
+
+
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });
+
