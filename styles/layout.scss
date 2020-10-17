@@ -1,9 +1,16 @@
 // See: https://sass-lang.com/
+@import "base";
 
 body {
-  background-color: #EEE;
+  background-color: #eee;
 
-  h1 {
-    color: #244751;
+  header {
+    background-color: $primary-color;
+    height: 10vh;
+  }
+
+  footer {
+    background-color: $primary-color;
+    height: 10vh;
   }
 }

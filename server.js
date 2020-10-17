@@ -16,7 +16,7 @@ const dbParams = require("./lib/db.js");
 const db = new Pool(dbParams);
 db.connect();
 //test the database connection
-db.query("SELECT * FROM test;").then((res) => console.log(res.rows));
+//db.query("SELECT * FROM test;").then((res) => console.log(res.rows));
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
