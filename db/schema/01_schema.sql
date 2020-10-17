@@ -10,8 +10,6 @@ DROP TABLE IF EXISTS reviews CASCADE;
 
 
 
--- hello
-
 CREATE TABLE users (
   id SERIAL PRIMARY KEY NOT NULL,
   name VARCHAR(255) NOT NULL,
