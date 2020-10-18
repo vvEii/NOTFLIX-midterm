@@ -42,37 +42,57 @@ $(() => {
   };
 
   // load all items from database
-  const loadItems = () => {
+  const loadItems = (items) => {
+    const $itemListContainer = $(".item-list-container");
+    $itemListContainer.empty();
     renderItems(items);
   };
 
   // load all Featured items from database
-  const loadFeaturedItems = () => {};
+  const loadFeaturedItems = () => {
+    const sortedItems = items.filter((ele) => ele.category === "featured");
+    const $itemListContainer = $(".item-list-container");
+    $itemListContainer.empty();
+    renderItems(sortedItems);
+  };
 
   // load all items price low to high
-  const loadItemsFromLowToHign = () => {};
+  const loadItemsFromLowToHign = (data) => {
+    const items = data.slice();
+    const $itemListContainer = $(".item-list-container");
+    $itemListContainer.empty();
+    items.sort((a, b) => a.price - b.price);
+    loadItems(items);
+  };
 
   // load all items from price high to low
-  const loadItemsFromHighToLow = () => {};
+  const loadItemsFromHighToLow = (data) => {
+    const items = data.slice();
+    const $itemListContainer = $(".item-list-container");
+    $itemListContainer.empty();
+    items.sort((a, b) => b.price - a.price);
+    loadItems(items);
+  };
 
   //add listener to filter
   $("#filter").on("change", (e) => {
     const option = e.target.value;
     switch (option) {
-    case "all":
-      //should call loadItem() after switch to real database
-      renderItems(items);
-      break;
-    case "lowToHigh":
-      break;
-    case "highToLow":
-      break;
-    case "featured":
-      loadFeaturedItems();
-      break;
+      case "all":
+        //should call loadItem() after switch to real database
+        loadItems(items);
+        break;
+      case "lowToHigh":
+        loadItemsFromLowToHign(items);
+        break;
+      case "highToLow":
+        loadItemsFromHighToLow(items);
+        break;
+      case "featured":
+        loadFeaturedItems();
+        break;
     }
   });
-  renderItems(items);
 });
 
 //temp data
@@ -82,6 +102,7 @@ const items = [
     owner_id: 1,
     name: "laptop",
     price: 299.0,
+    category: "featured",
     description:
       "Suspendsse rutrum vestibulum nibh, Donec posuere lobortis ex, id luctus orci. Vestibulum auctor nisl urna, id elementum libero malesuada vitae. Integer id nibh hendrerit, tristique turpis ac, tempor eros",
     picture:
@@ -94,6 +115,7 @@ const items = [
     owner_id: 2,
     name: "laptop",
     price: 730.0,
+    category: "featured",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. por eros",
     picture:
@@ -106,6 +128,7 @@ const items = [
     owner_id: 3,
     name: "laptop",
     price: 300.0,
+    category: "SUV",
     description: "Lorem ipsum dolor sit amet,  eros",
     picture:
       "https://m.media-amazon.com/images/I/81G-GxbJrNL._AC_UL640_FMwebp_QL65_.jpg",
@@ -117,6 +140,7 @@ const items = [
     owner_id: 4,
     name: "laptop",
     price: 1099.0,
+    category: "SUV",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscibh,tum urna. Orci varius natoque penatibus et magnis dis onec posuere lobortis ex, id luctus orci. Vestibulum auctor nisl urna, id elementum libero malesuada vitae. tristique turpis ac, tempor eros",
     picture:
@@ -129,6 +153,7 @@ const items = [
     owner_id: 5,
     name: "laptop",
     price: 298.0,
+    category: "sedan",
     description:
       "Lorem ipsum dolor sit amet, consectetur dignissim ut est. Suspendisse rutrum vestibulum nibh, Vestibulum auctor nisl urna, id elementum libero malesuada vitae. Integer id nibh hendrerit, tristique turpis ac, tempor eros",
     picture:
