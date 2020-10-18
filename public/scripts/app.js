@@ -41,19 +41,30 @@ $(() => {
     });
   };
 
+  const renderItemAmount = (amount) => {
+    const $itemAmount = $(".item-amount");
+    $itemAmount.text(`Showing ${amount} items`);
+  };
+
   // load all items from database
   const loadItems = (items) => {
     const $itemListContainer = $(".item-list-container");
+    const amount = items.length;
+
     $itemListContainer.empty();
     renderItems(items);
+    renderItemAmount(amount);
   };
 
   // load all Featured items from database
   const loadFeaturedItems = () => {
     const sortedItems = items.filter((ele) => ele.category === "featured");
+    const amount = sortedItems.length;
     const $itemListContainer = $(".item-list-container");
+
     $itemListContainer.empty();
     renderItems(sortedItems);
+    renderItemAmount(amount);
   };
 
   // load all items price low to high

@@ -4,6 +4,15 @@
 body {
   background-color: #eee;
 
+  .filter-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    #filter {
+      
+    }
+  }
+
   header {
     background-color: $primary-color;
     height: 10vh;
