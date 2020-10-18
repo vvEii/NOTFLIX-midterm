@@ -5,18 +5,27 @@ const bcrypt = require('bcrypt');
 module.exports = (db) => {
 
   const addUser = function(user) {
-    const queryString = `
-     INSERT INTO users (username, password, email, phone_number)
-     VALUES ($1, $2, $3, $3) RETURNING *;
-    `;
 
-    const values = [user.username, user.password, user.email, user.phone_number];
+    // first check if user is already in database
+    const queryCheck = `SELECT * FROM users WHERE email = $1;`; 
+    const userEmail = [user.email]; 
 
-    return db.query(queryString, values)
-      .then(res => res.rows[0]);
-  }
+    db.query(queryCheck, userEmail)
+      .then(userData => {
+        if (userData.rows.length > 0) {
+          return null;
+        } else {
 
-  //{ id: 1, name: 'Devin Sanders', email:'tristanjacobs@gmail.com', password:'$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.' }
+         const queryString = `
+         INSERT INTO users (username, password, email, phone_number)
+         VALUES ($1, $2, $3, $3) RETURNING *;
+        `;
+
+        const values = [user.username, user.password, user.email, user.phone_number];
+        return db.query(queryString, values).then(res => res.rows[0]);
+        }
+      });
+  };
 
   router.get('/', (req, res) => {
     res.render('register_url');
@@ -39,4 +48,5 @@ module.exports = (db) => {
 
   return router;
 };
+
 
