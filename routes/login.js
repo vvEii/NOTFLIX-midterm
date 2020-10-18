@@ -13,19 +13,19 @@ module.exports = (db) => {
     const values = [email];
 
     return db.query(queryString, values)
-    .then(res => res.rows[0])
-    .then(user => {
-      if (bcrypt.compareSync(password, user.password)) {
-        return user;
-      }
-      return null;
-    });
+      .then(res => res.rows[0])
+      .then(user => {
+        if (bcrypt.compareSync(password, user.password)) {
+          return user;
+        }
+        return null;
+      });
   };
 
   router.get('/', (req, res) => {
     res.render('login_url');
   })
-  .post('/', (req,res) => {
+    .post('/', (req,res) => {
       const { email, password } = req.body;
       login(email, password)
         .then(user => {
@@ -38,7 +38,7 @@ module.exports = (db) => {
           res.redirect('/');
         })
         .catch(e => res.send(e));
-  });
+    });
  
 
   return router;
