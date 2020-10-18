@@ -16,6 +16,8 @@ body {
     margin: 1rem;
     #filter {
       background-color: $secondary-color;
+      padding: 0.5rem;
+      border: none;
     }
     .item-amount {
       margin-bottom: 0;
@@ -25,10 +27,16 @@ body {
   .main-container {
     margin: 1rem;
     display: flex;
-    justify-content: space-between;
+    .list-group {
+      margin-right: 1rem;
+    }
     .category {
       .list-group-item {
         padding: 0.75rem 0.25rem !important;
+        border: none !important;
+      }
+      .list-group-item-action {
+        border: none;
       }
     }
   }

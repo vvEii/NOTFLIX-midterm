@@ -130,7 +130,7 @@ const items = [
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. por eros",
     picture:
-      "https://m.media-amazon.com/images/I/41e-XmnpLsL._AC_UL640_FMwebp_QL65_.jpg",
+      "https://m.media-amazon.com/images/I/71mimPP+H8L._AC_UL640_FMwebp_QL65_.jpg",
     stock: 10,
     is_sold: false,
   },
