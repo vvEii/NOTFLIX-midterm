@@ -25,6 +25,13 @@ button {
   width: 100%;
 }
 
+hr {
+  border: 1px solid black;
+  margin-bottom: 25px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
 .login-container {
   display: block;
   margin-left: auto;
@@ -48,6 +55,6 @@ button:hover {
   font-family: bungee;
   padding-top: 5px;
   font-size: 5px;
-  border-bottom: 2px solid black;
 }
+
 
