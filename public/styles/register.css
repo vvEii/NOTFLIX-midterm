@@ -1,17 +1,22 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
-  background-color: whitesmoke;
+  background-image: url(/images/asfalt.png);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-* {
-  box-sizing: border-box;
+.container h1 {
+  text-align: center;
+  font-family: bungee;
 }
 
 /* Add padding to containers */
 .container {
   padding: 16px;
   background-color: white;
-  border: 5px solid red;
+  border: 5px solid black;
+  margin-top: 60px;
 }
 
 /* Full-width input fields */
@@ -24,10 +29,6 @@ input[type=text], input[type=password], input[type=tel]{
   background: #f1f1f1;
 }
 
-.register-img {
-  display: none;
-}
-
 input[type=text]:focus, input[type=password]:focus {
   background-color: #ddd;
   outline: none;
@@ -35,7 +36,7 @@ input[type=text]:focus, input[type=password]:focus {
 
 /* Overwrite default styles of hr */
 hr {
-  border: 1px solid #f1f1f1;
+  border: 1px solid black;
   margin-bottom: 25px;
 }
 
@@ -52,32 +53,31 @@ hr {
 }
 
 .register-page {
-  display: flex; 
+  display: flex;
+  width: 90%;
   align-items: center;
-  justify-content: center;
-  
+  border: 5px solid blue;
 }
 
 .registerbtn:hover {
   opacity: 1;
 }
 
-/* Add a blue text color to links */
 a {
   color: dodgerblue;
 }
 
-/* Set a grey background color and center the text of the "sign in" section */
+.container-class {
+  margin-top: 10px;
+}
+
 .signin {
   background-color: #f1f1f1;
   text-align: center;
 }
 
 @media only screen and (min-width: 1024px) {
-  .register-img {
-    display: block;
-  }
-
-
-
-}
+  .container {
+    max-width: 600px;
+ }
+} 
