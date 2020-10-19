@@ -34,7 +34,7 @@ module.exports = (db) => {
             return;
           }
           req.session.user_id = user.email;
-          res.send({ user: { id: user.id, name: user.username, email: user.email, phone: user.phone_number } });
+          //res.send({ user: { id: user.id, name: user.username, email: user.email, phone: user.phone_number } });
           res.redirect('/');
         })
         .catch(e => res.send(e));
