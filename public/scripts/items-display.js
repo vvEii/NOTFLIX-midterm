@@ -1,24 +1,37 @@
 /* eslint-disable no-undef */
 /* eslint-disable camelcase */
 $(() => {
-  // $.ajax({
-  //   method: "GET",
-  //   url: "/api/users",
-  // }).done((users) => {
-  //   for (user of users) {
-  //     $("<div>").text(user.name).appendTo($("body"));
-  //   }
-  // });
+  //load all items from database
+  loadItems();
 
-  // create item elements
-  const createItem = (item) => {
-    const name = item.name;
-    const price = "$" + item.price;
-    const description = item.description;
-    const picture = item.picture;
-    //const stock = item.stock;
-    //const is_sold = item.is_sold;
-    const $item = `
+  $("#filter").on("change", (e) => {
+    const option = e.target.value;
+    switch (option) {
+      case "all":
+        //should call loadItem() after switch to real database
+        loadItems();
+        break;
+      case "lowToHigh":
+        loadItemsFromLowToHign();
+        break;
+      case "highToLow":
+        loadItemsFromHighToLow();
+        break;
+      case "featured":
+        loadFeaturedItems();
+        break;
+    }
+  });
+});
+// create item elements
+const createItem = (item) => {
+  const name = item.name;
+  const price = "$" + item.price;
+  const description = item.description;
+  const picture = item.picture;
+  //const stock = item.stock;
+  //const is_sold = item.is_sold;
+  const $item = `
     <div class="col mb-4">
     <div class="card h-100">
       <img src=${picture} class="card-img-top" alt="I am a picture">
@@ -30,81 +43,66 @@ $(() => {
     </div>
   </div>
     `;
-    return $item;
-  };
+  return $item;
+};
 
-  // render items that passed in
-  const renderItems = (itemArr) => {
-    itemArr.forEach((ele) => {
-      let $item = createItem(ele);
-      $(".item-list-container").append($item);
-    });
-  };
-
-  const renderItemAmount = (amount) => {
-    const $itemAmount = $(".item-amount");
-    $itemAmount.text(`Showing ${amount} items`);
-  };
-
-  // load all items from database
-  const loadItems = (items) => {
-    const $itemListContainer = $(".item-list-container");
-    const amount = items.length;
-
-    $itemListContainer.empty();
-    renderItems(items);
-    renderItemAmount(amount);
-  };
-
-  // load all Featured items from database
-  const loadFeaturedItems = () => {
-    const sortedItems = items.filter((ele) => ele.category === "featured");
-    const amount = sortedItems.length;
-    const $itemListContainer = $(".item-list-container");
-
-    $itemListContainer.empty();
-    renderItems(sortedItems);
-    renderItemAmount(amount);
-  };
-
-  // load all items price low to high
-  const loadItemsFromLowToHign = (data) => {
-    const items = data.slice();
-    const $itemListContainer = $(".item-list-container");
-    $itemListContainer.empty();
-    items.sort((a, b) => a.price - b.price);
-    loadItems(items);
-  };
-
-  // load all items from price high to low
-  const loadItemsFromHighToLow = (data) => {
-    const items = data.slice();
-    const $itemListContainer = $(".item-list-container");
-    $itemListContainer.empty();
-    items.sort((a, b) => b.price - a.price);
-    loadItems(items);
-  };
-
-  //add listener to filter
-  $("#filter").on("change", (e) => {
-    const option = e.target.value;
-    switch (option) {
-      case "all":
-        //should call loadItem() after switch to real database
-        loadItems(items);
-        break;
-      case "lowToHigh":
-        loadItemsFromLowToHign(items);
-        break;
-      case "highToLow":
-        loadItemsFromHighToLow(items);
-        break;
-      case "featured":
-        loadFeaturedItems();
-        break;
-    }
+// render items that passed in
+const renderItems = (itemArr) => {
+  console.log(itemArr);
+  itemArr.forEach((ele) => {
+    let $item = createItem(ele);
+    $(".item-list-container").append($item);
   });
-});
+};
+
+const renderItemAmount = (amount) => {
+  const $itemAmount = $(".item-amount");
+  $itemAmount.text(`Showing ${amount} items`);
+};
+
+// load all items from database
+const loadItems = () => {
+  const $itemListContainer = $(".item-list-container");
+  $itemListContainer.empty();
+
+  $.get("/api/items/all")
+    .then((res) => {
+      const allitems = res.items;
+      const amount = allitems.length;
+      renderItemAmount(amount);
+      renderItems(allitems);
+    })
+    .catch((err) => console.log(err));
+};
+
+// load all Featured items from database
+const loadFeaturedItems = () => {
+  const sortedItems = items.filter((ele) => ele.category === "featured");
+  const amount = sortedItems.length;
+  const $itemListContainer = $(".item-list-container");
+
+  $itemListContainer.empty();
+  renderItems(sortedItems);
+  renderItemAmount(amount);
+};
+
+// load all items price low to high
+const loadItemsFromLowToHign = (data) => {
+  const items = data.slice();
+  const $itemListContainer = $(".item-list-container");
+  $itemListContainer.empty();
+  items.sort((a, b) => a.price - b.price);
+  loadItems(items);
+};
+
+// load all items from price high to low
+const loadItemsFromHighToLow = (data) => {
+  const items = data.slice();
+  const $itemListContainer = $(".item-list-container");
+  $itemListContainer.empty();
+  items.sort((a, b) => b.price - a.price);
+  loadItems(items);
+};
 
 //temp data
 const items = [
