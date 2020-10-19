@@ -28,7 +28,7 @@ const createItem = (item) => {
   const name = item.name;
   const price = "$" + item.price;
   const description = item.description;
-  const picture = item.picture;
+  const picture = item.cover_url;
   //const stock = item.stock;
   //const is_sold = item.is_sold;
   const $item = `
@@ -77,13 +77,17 @@ const loadItems = () => {
 
 // load all Featured items from database
 const loadFeaturedItems = () => {
-  const sortedItems = items.filter((ele) => ele.category === "featured");
-  const amount = sortedItems.length;
   const $itemListContainer = $(".item-list-container");
-
   $itemListContainer.empty();
-  renderItems(sortedItems);
-  renderItemAmount(amount);
+
+  $.get("/api/items/featured")
+    .then((res) => {
+      const featuredItem = res.items;
+      const amount = featuredItem.length;
+      renderItems(featuredItem);
+      renderItemAmount(amount);
+    })
+    .catch((err) => console.log(err));
 };
 
 // load all items price low to high
