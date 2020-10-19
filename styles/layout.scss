@@ -1,9 +1,48 @@
 // See: https://sass-lang.com/
+@import "base";
 
 body {
-  background-color: #EEE;
+  background-color: #eee;
 
-  h1 {
-    color: #244751;
+  header {
+    background-color: $primary-color;
+    height: 10vh;
+  }
+
+  .filter-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1rem;
+    #filter {
+      background-color: $secondary-color;
+      padding: 0.5rem;
+      border: none;
+    }
+    .item-amount {
+      margin-bottom: 0;
+    }
+  }
+
+  .main-container {
+    margin: 1rem;
+    display: flex;
+    .list-group {
+      margin-right: 1rem;
+    }
+    .category {
+      .list-group-item {
+        padding: 0.75rem 0.25rem !important;
+        border: none !important;
+      }
+      .list-group-item-action {
+        border: none;
+      }
+    }
+  }
+
+  footer {
+    background-color: $primary-color;
+    height: 10vh;
   }
 }
