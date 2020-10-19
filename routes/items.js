@@ -31,5 +31,28 @@ module.exports = (db) => {
       })
       .catch((err) => res.status(500).json({ error: err.message }));
   });
+
+  // load items from price low to high
+  router.get("/price-low-to-high", (req, res) => {
+    let queryString = "SELECT * FROM items ORDER BY items.price LIMIT 10;";
+    db.query(queryString)
+      .then((data) => {
+        const items = data.rows;
+        res.json({ items });
+      })
+      .catch((err) => res.status(500).json({ error: err.message }));
+  });
+
+  // load items from price high to low
+  router.get("/price-high-to-low", (req, res) => {
+    let queryString = "SELECT * FROM items ORDER BY items.price DESC LIMIT 10;";
+    db.query(queryString)
+      .then((data) => {
+        const items = data.rows;
+        res.json({ items });
+      })
+      .catch((err) => res.status(500).json({ error: err.message }));
+  });
+
   return router;
 };
