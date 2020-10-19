@@ -10,18 +10,15 @@ module.exports = (db) => {
     const queryCheck = `SELECT * FROM users WHERE email = $1;`; 
     const userEmail = [user.email]; 
 
-    db.query(queryCheck, userEmail)
+    return db.query(queryCheck, userEmail)
       .then(userData => {
         if (userData.rows.length > 0) {
           return null;
         } else {
 
-         const queryString = `
-         INSERT INTO users (username, password, email, phone_number)
-         VALUES ($1, $2, $3, $3) RETURNING *;
-        `;
+        const queryString = `INSERT INTO users (name, password, email, phone_number) VALUES ($1, $2, $3, $4) RETURNING *;`;
 
-        const values = [user.username, user.password, user.email, user.phone_number];
+        const values = [user.username, user.password, user.email, user.phone];
         return db.query(queryString, values).then(res => res.rows[0]);
         }
       });
@@ -33,16 +30,19 @@ module.exports = (db) => {
       const user = req.body;
       user.password = bcrypt.hashSync(user.password, 12);
       // database unique in emails
-      addUser(user)
-        .then(user => {
-          if (!user) {
-            res.status(401).send({ error: "Email already in system!" });
-            return;
-          }
-          req.session.user_id = user.email;
-          res.redirect('/');
-        })
-        .catch(e => res.send(e));
+    addUser(user)
+      .then(user => {
+        if (!user) {
+          res.status(401).send({ error: "Email already in system!" });
+          return;
+        }
+        req.session.user_id = user.email;
+        res.redirect('/');
+      })
+      .catch(e => {
+        //res.send(e)
+        console.log(e)
+      });
   });
 
 
