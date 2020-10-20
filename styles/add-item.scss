@@ -1,0 +1,40 @@
+body {
+  font-family: Helvetica, sans-serif;
+  background-image: url(/images/movie-film.jpeg);
+  color: white;
+  font-size: 20px;
+}
+
+.container {
+  padding: 20px;
+  background-color: black;
+  opacity: 0.8;
+  border-radius: 5px;
+  margin-top: 80px;
+  margin-bottom: 70px;
+}
+
+input[type=text], input[type=number] {
+  width: 100%;
+  padding: 9px;
+  margin: 5px 0 10px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
+input[type=text]:focus, input[type=number]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+hr {
+  border: 1px solid white;
+  margin-bottom: 25px;
+}
+
+@media only screen and (min-width: 1024px) {
+  .container {
+    max-width: 700px;
+ }
+} 

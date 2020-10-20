@@ -41,6 +41,7 @@ const loginRoutes = require("./routes/login");
 // registeration routes
 const registrationRoutes = require("./routes/registration");
 // const logoutRoutes =  require("./routes/logout");
+const addItemRoutes = require("./routes/addItem");
 
 // Mount all resource routes
 app.use("/login", loginRoutes(db));
@@ -51,7 +52,6 @@ app.use("/api/items", itemsRoutes(db));
 // Note: Feel free to replace the example routes below with your own
 // const usersRoutes = require("./routes/users");
 // const widgetsRoutes = require("./routes/widgets");
-const addItemRoutes = require("./routes/addItem");
 
 app.use("/add", addItemRoutes(db));
 
