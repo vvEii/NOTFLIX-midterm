@@ -49,8 +49,8 @@ app.use("/register", registrationRoutes(db));
 app.use("/api/items", itemsRoutes(db));
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
-const usersRoutes = require("./routes/users");
-const widgetsRoutes = require("./routes/widgets");
+// const usersRoutes = require("./routes/users");
+// const widgetsRoutes = require("./routes/widgets");
 const addItemRoutes = require("./routes/addItem");
 
 app.use("/add", addItemRoutes(db));
