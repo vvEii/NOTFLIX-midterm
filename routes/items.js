@@ -54,9 +54,20 @@ module.exports = (db) => {
       .catch((err) => res.status(500).json({ error: err.message }));
   });
 
-  router.get("details/:id", (req, res) => {
+  router.get("/details/:id", (req, res) => {
     let queryString = "SELECT * FROM items WHERE id = $1 ;";
-    console.log(req.data);
+    const value = [req.params.id];
+
+    db.query(queryString, value)
+      .then((data) => {
+        const item = data.rows;
+        // const templateVar = {
+        //   item,
+        // };
+        // res.render("item_details.ejs", templateVar);
+        res.json({ item });
+      })
+      .catch((err) => res.status(500).json({ error: err.message }));
   });
 
   return router;

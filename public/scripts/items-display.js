@@ -23,18 +23,41 @@ $(() => {
     }
   });
 });
+// create item details element
+const createItemDetails = (item) => {
+  const name = item.name;
+  const price = "$" + item.price;
+  const description = item.description;
+  const stock = item.stock;
+  const is_sold = item.is_sold;
+  const thumbnail = item.thumbnail_url;
+  const cover = item.cover_url;
+
+  const $item = `
+  <div>
+  <h5>${name}</h5>
+  <h6>${price}</h6>
+  <h6>${stock}</h6>
+  <p>${description}</p>
+  <img src=${thumbnail} alt='Image'>
+  <img src=${cover} alt='Image'>
+  </div>
+  `;
+
+  return $item;
+};
+
 // create item elements
 const createItem = (item) => {
   const id = item.id;
   const name = item.name;
   const price = "$" + item.price;
   const picture = item.thumbnail_url;
-  //const stock = item.stock;
-  //const is_sold = item.is_sold;
+
   const $item = `
     <div class="col mb-4">
     <div class="card h-100">
-      <img src=${picture} class="card-img-top item-img-${id}" alt="I am a picture">
+      <img src=${picture} class="card-img-top item-img-${id}" alt="Image">
       <div class="card-body">
         <h5 class="card-title item-name-${id}">${name}</h5>
         <p> ${price}</p>
@@ -47,9 +70,13 @@ const createItem = (item) => {
 
 // load item details information
 const loadDetails = (id) => {
-  console.log(id);
   $.get(`/api/items/details/${id}`)
-    .then((res) => console.log(res))
+    .then((res) => {
+      const $outterContainer = $(".outter-container");
+      $outterContainer.hide();
+      const $itemDetails = createItemDetails(res.item[0]);
+      $("header").after($itemDetails);
+    })
     .catch((err) => console.log(err));
 };
 
