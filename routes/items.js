@@ -54,5 +54,10 @@ module.exports = (db) => {
       .catch((err) => res.status(500).json({ error: err.message }));
   });
 
+  router.get("details/:id", (req, res) => {
+    let queryString = "SELECT * FROM items WHERE id = $1 ;";
+    console.log(req.data);
+  });
+
   return router;
 };

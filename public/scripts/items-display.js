@@ -25,18 +25,18 @@ $(() => {
 });
 // create item elements
 const createItem = (item) => {
+  const id = item.id;
   const name = item.name;
   const price = "$" + item.price;
-  const description = item.description;
-  const picture = item.cover_url;
+  const picture = item.thumbnail_url;
   //const stock = item.stock;
   //const is_sold = item.is_sold;
   const $item = `
     <div class="col mb-4">
     <div class="card h-100">
-      <img src=${picture} class="card-img-top" alt="I am a picture">
+      <img src=${picture} class="card-img-top item-img-${id}" alt="I am a picture">
       <div class="card-body">
-        <h5 class="card-title">${name}</h5>
+        <h5 class="card-title item-name-${id}">${name}</h5>
         <p> ${price}</p>
       </div>
     </div>
@@ -45,12 +45,34 @@ const createItem = (item) => {
   return $item;
 };
 
+// load item details information
+const loadDetails = (id) => {
+  console.log(id);
+  $.get(`/api/items/details/${id}`)
+    .then((res) => console.log(res))
+    .catch((err) => console.log(err));
+};
+
+// add listener to item name and image
+const addListener = (id) => {
+  const $image = $(`.item-img-${id}`);
+  const $name = $(`.item-name-${id}`);
+
+  // use closure to pass the function with parameter "id"
+  $image.on("click", (e) => {
+    return loadDetails(id);
+  });
+  $name.on("click", () => {
+    return loadDetails(id);
+  });
+};
+
 // render items that passed in
 const renderItems = (itemArr) => {
-  console.log(itemArr);
   itemArr.forEach((ele) => {
     let $item = createItem(ele);
     $(".item-list-container").append($item);
+    addListener(ele.id);
   });
 };
 
