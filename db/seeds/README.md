@@ -1,8 +1,8 @@
-There are 1000 user Password are hashed and it stands for word "password"
-(is admin) is null by default but there are 1% OR 9 of the users had true means ADMINs
+There are 20 user Password are hashed and it stands for word "password"
+(is admin) is null by default but there are 1% OR 1 of the users had true means ADMINs
 
 
-there are 1000 item the product are groceries
+there are 20 item the product are groceries
 the price set to two decimal places
 the pictures 100*100 px for thumbnail
 and 500*500 px for the cover
