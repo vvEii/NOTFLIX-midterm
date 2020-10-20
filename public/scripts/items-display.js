@@ -24,23 +24,31 @@ $(() => {
   });
 });
 // create item details element
-const createItemDetails = (item) => {
+const createItemDetails = (items) => {
+  const item = items[0];
   const name = item.name;
   const price = "$" + item.price;
+  const rating = item.rating;
   const description = item.description;
   const stock = item.stock;
   const is_sold = item.is_sold;
   const thumbnail = item.thumbnail_url;
   const cover = item.cover_url;
-
+  const reviews = [];
+  items.forEach((ele) => reviews.push(ele.message));
+  console.log(reviews);
   const $item = `
-  <div>
-  <h5>${name}</h5>
-  <h6>${price}</h6>
-  <h6>${stock}</h6>
-  <p>${description}</p>
-  <img src=${thumbnail} alt='Image'>
-  <img src=${cover} alt='Image'>
+  <div class="wrapper">
+  <div class="box-image">
+    <img src=${thumbnail} alt='Image'>
+  </div>
+  <div class="box-info">
+    <h3>${name}</h3>
+    <h5 class="currency">CDN ${price}</h5>
+    <h5><span class="fa fa-star checked"></span> ${rating}/ 5</h5>
+    <h5>Stocks: ${stock}</h5>
+    <p>${description}</p>
+  </div>
   </div>
   `;
 
@@ -52,12 +60,12 @@ const createItem = (item) => {
   const id = item.id;
   const name = item.name;
   const price = "$" + item.price;
-  const picture = item.thumbnail_url;
+  const thumbnail = item.thumbnail_url;
 
   const $item = `
     <div class="col mb-4">
     <div class="card h-100">
-      <img src=${picture} class="card-img-top item-img-${id}" alt="Image">
+      <img src=${thumbnail} class="card-img-top item-img-${id}" alt="Image">
       <div class="card-body">
         <h5 class="card-title item-name-${id}">${name}</h5>
         <p> ${price}</p>
@@ -74,7 +82,7 @@ const loadDetails = (id) => {
     .then((res) => {
       const $outterContainer = $(".outter-container");
       $outterContainer.hide();
-      const $itemDetails = createItemDetails(res.item[0]);
+      const $itemDetails = createItemDetails(res.item);
       $("header").after($itemDetails);
     })
     .catch((err) => console.log(err));

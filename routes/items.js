@@ -55,7 +55,7 @@ module.exports = (db) => {
   });
 
   router.get("/details/:id", (req, res) => {
-    let queryString = "SELECT * FROM items WHERE id = $1 ;";
+    let queryString = "SELECT items.*, message, AVG(rating) AS rating FROM items JOIN reviews ON items.id = item_id WHERE items.id = $1 GROUP BY items.id, message;";
     const value = [req.params.id];
 
     db.query(queryString, value)
