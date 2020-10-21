@@ -25,13 +25,13 @@
     <div class="navbar-nav" id="search">
       <input type="text" class="form-control" placeholder="Search" aria-label="Recipient's username" aria-describedby="button-addon2">
       <div class="input-group-append">
-        <button class="btn btn-outline-secondary" type="button" id="button-addon2">Search</button>
+        <button class="btn" type="button" id="button-addon2">Search</button>
       </div>
     </div>
     <% if (name) {%>
     <form class="navbar-nav form-inline my-2 my-lg-0" method="POST" action="/logout" id="form">
-      <span class="navbar-text text-white bg-dark">Welcome <%= name %></span>
-      <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Logout</button>
+      <span class="navbar-text text-white ">Welcome <%= name %></span>
+      <button class="btn my-2 my-sm-0" type="submit">Logout</button>
     </form>
     <% } else { %>
     <div class="navbar-nav" id="login">
