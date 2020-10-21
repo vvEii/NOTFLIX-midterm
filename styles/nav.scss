@@ -1,9 +1,16 @@
+@import "base";
+
 nav {
+  background-color: $primary-color;
+  height: 15vh;
   #navbarSupportedContent {
     display: flex;
     justify-content: space-between;
   }
   .navbar-text {
     margin: 0 10px 0 10px;
+  }
+  .navbar-nav .btn {
+    color: $secondary-color;
   }
 }
