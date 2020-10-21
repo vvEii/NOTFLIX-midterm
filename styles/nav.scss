@@ -1,4 +1,8 @@
+@import "base";
+
 nav {
+  background-color: $primary-color;
+  height: 15vh;
   #navbarSupportedContent {
     display: flex;
     justify-content: space-between;

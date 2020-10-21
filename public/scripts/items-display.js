@@ -7,19 +7,18 @@ $(() => {
   $("#filter").on("change", (e) => {
     const option = e.target.value;
     switch (option) {
-      case "all":
-        //should call loadItem() after switch to real database
-        loadItems();
-        break;
-      case "lowToHigh":
-        loadItemsBasedOnPrice("/api/items/price-low-to-high");
-        break;
-      case "highToLow":
-        loadItemsBasedOnPrice("/api/items/price-high-to-low");
-        break;
-      case "featured":
-        loadFeaturedItems();
-        break;
+    case "all":
+      loadItems();
+      break;
+    case "lowToHigh":
+      loadItemsBasedOnPrice("/api/items/price-low-to-high");
+      break;
+    case "highToLow":
+      loadItemsBasedOnPrice("/api/items/price-high-to-low");
+      break;
+    case "featured":
+      loadFeaturedItems();
+      break;
     }
   });
 });
