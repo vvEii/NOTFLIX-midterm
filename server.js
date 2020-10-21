@@ -50,6 +50,8 @@ const logoutRoutes = require("./routes/logout");
 const addItemRoutes = require("./routes/addItem");
 // categories routes
 const categoriesRoutes = require('./routes/categories');
+// favorite routes
+const favoriteRoutes = require('./routes/favorite');
 
 
 // Mount all resource routes
@@ -59,6 +61,7 @@ app.use("/logout", logoutRoutes(db));
 app.use("/api/items", itemsRoutes(db));
 app.use("/add", addItemRoutes(db));
 app.use('/categories', categoriesRoutes(db));
+app.use('/favorite',favoriteRoutes(db));
 
 // Home page
 // Warning: avoid creating more routes in this file!
