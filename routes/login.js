@@ -23,21 +23,25 @@ module.exports = (db) => {
   };
 
   router.get('/', (req, res) => {
-    res.render('login_url');
+    if (req.session.user_info) {
+      res.redirect('/');
+    } else {
+      res.render('login_url');
+    }
   })
     .post('/', (req,res) => {
       const { email, password } = req.body;
       login(email, password)
         .then(user => {
           if (!user) {
-            res.status(401).send({ error: "Email or Password don't match" });
+            res.status(401).send({ error: 'Email or Password don\'t match' });
             return;
           }
-          req.session.user_id = user.email;
-          //res.send({ user: { id: user.id, name: user.username, email: user.email, phone: user.phone_number } });
+          req.session.user_info = user;
+          console.log (req.session.user_info);
           res.redirect('/');
         })
-        .catch(e => res.send(e));
+        .catch(console.log);
     });
  
 

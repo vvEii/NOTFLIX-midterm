@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <header>
   <nav class="navbar navbar-dark bg-dark"> 
     <a class="navbar-brand" href="#">Navbar</a>
@@ -6,19 +7,48 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
+=======
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="/">NETFLIX</a>
+  <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button> -->
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div class="navbar-nav" id="list">
+      <ul class="navbar-nav" id="list">
+>>>>>>> nav
         <li class="nav-item active">
           <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Features</a>
+        <% if (is_admin) {%>
+        <li class="nav-item active">
+          <a class="nav-link" href="/add">Add Movie</a> <span class="sr-only">(current)</span></a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Pricing</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+        <% } %>
+        <li class="nav-item active">
+          <a class="nav-link" href="#">My Fav <span class="sr-only">(current)</span></a>
+        </li><li class="nav-item active">
+          <a class="nav-link" href="#">My Cart</a>
         </li>
       </ul>
     </div>
-  </nav>
-</header>
+    <div class="navbar-nav" id="search">
+      <input type="text" class="form-control" placeholder="Search" aria-label="Recipient's username" aria-describedby="button-addon2">
+      <div class="input-group-append">
+        <button class="btn btn-outline-secondary" type="button" id="button-addon2">Search</button>
+      </div>
+    </div>
+    <% if (name) {%>
+    <form class="navbar-nav form-inline my-2 my-lg-0" method="POST" action="/logout" id="form">
+      <span class="navbar-text text-white bg-dark">Welcome <%= name %></span>
+      <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Logout</button>
+    </form>
+    <% } else { %>
+    <div class="navbar-nav" id="login">
+      <a class="nav-item nav-link" href="/login"><button class="btn btn-outline-success my-2 my-sm-0" type="submit">Login</button></a>
+      <a class="nav-item nav-link" href="/register"><button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Register</button></a>
+    </div>
+    <% } %>
+  </div>
+</nav>
