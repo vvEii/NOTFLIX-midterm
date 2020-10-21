@@ -5,7 +5,9 @@ const router  = express.Router();
 
 module.exports = (db) => {
   router.post('/', (req, res) => {
-    req.session.userId = null;
-    res.send({});
+    req.session = null;
+    res.redirect('/login');
   });
-}
+
+  return router;
+};

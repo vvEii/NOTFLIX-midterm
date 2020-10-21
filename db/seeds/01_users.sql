@@ -1,4 +1,4 @@
-insert into users (name, password, email, phone_number, is_admin) values ('Em Deville', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.', 'edeville0@umich.edu', '887-130-6679', null);
+insert into users (name, password, email, phone_number, is_admin) values ('Em Deville', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.', 'edeville0@umich.edu', '887-130-6679', true);
 insert into users (name, password, email, phone_number, is_admin) values ('Abramo Keepe', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.', 'akeepe1@apple.com', '869-697-2876', null);
 insert into users (name, password, email, phone_number, is_admin) values ('Nollie Tiuit', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.', 'ntiuit2@creativecommons.org', '693-251-4346', null);
 insert into users (name, password, email, phone_number, is_admin) values ('Vasily Clendennen', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.', 'vclendennen3@freewebs.com', '971-368-0273', null);
@@ -10,7 +10,7 @@ insert into users (name, password, email, phone_number, is_admin) values ('Delor
 insert into users (name, password, email, phone_number, is_admin) values ('Sheela Drakeley', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.', 'sdrakeley9@businessweek.com', '278-482-3876', null);
 insert into users (name, password, email, phone_number, is_admin) values ('Wilek Estoile', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.', 'westoilea@google.ca', '898-798-0068', null);
 insert into users (name, password, email, phone_number, is_admin) values ('Juana Settle', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.', 'jsettleb@liveinternet.ru', '831-961-0407', null);
-insert into users (name, password, email, phone_number, is_admin) values ('Merridie Bexon', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.', 'mbexonc@toplist.cz', '130-938-0823', false);
+insert into users (name, password, email, phone_number, is_admin) values ('Merridie Bexon', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.', 'mbexonc@toplist.cz', '130-938-0823', null);
 insert into users (name, password, email, phone_number, is_admin) values ('Nadya Verring', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.', 'nverringd@alexa.com', '506-918-1777', null);
 insert into users (name, password, email, phone_number, is_admin) values ('Jennette Jiru', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.', 'jjirue@sciencedaily.com', '476-585-7507', null);
 insert into users (name, password, email, phone_number, is_admin) values ('Allianora McKeurton', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.', 'amckeurtonf@ed.gov', '172-936-7770', null);

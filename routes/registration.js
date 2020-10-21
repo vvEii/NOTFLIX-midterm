@@ -25,7 +25,11 @@ module.exports = (db) => {
   };
 
   router.get('/', (req, res) => {
-    res.render('register_url');
+    if (req.session.user_info) {
+      res.redirect('/');
+    } else {
+      res.render('register_url');
+    }
   }).post('/',(req,res) => {
       const user = req.body;
       user.password = bcrypt.hashSync(user.password, 12);
