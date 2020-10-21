@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/styles/chat-box.css" type="text/css" />
+    <script defer type="text/javascript" src="/scripts/chat-display.js"></script>
+</head>
+
+<body>
+ <button class="open-button"><b>Chat</b></button>
+ <div class="chat-popup" id="myForm">
+   <form action="https://formspree.io/f/myybweok" method="POST" class="form-container" id="my-form">
+      <h1>Need Help?</h1>
+      <hr>
+      <label for="user-name"><b>Name</b></label>
+      <input class="user-name" type="text" placeholder="Type Name" name="user-name" required>
+
+      <label for="user-email"><b>Email</b></label>
+      <input class="user-email" type="email" placeholder="Type Email" name="user-email" required>
+
+      <label for="msg"><b>Message</b></label>
+      <textarea class="user-msg" placeholder="Type message" name="msg" required></textarea>
+
+      <button type="submit" class="btn">Send</button>
+      <button type="button" class="btn cancel">Close</button>
+      <div id="form-status"></div>
+    </form>
+    </div>
+    </body>
+</html>

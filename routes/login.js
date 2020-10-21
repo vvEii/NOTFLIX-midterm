@@ -3,7 +3,7 @@ const router  = express.Router();
 const bcrypt = require('bcrypt');
 
 module.exports = (db) => {
-
+  // login function - authenticates user
   const login = function(email, password) {
     const queryString = `
     SELECT * FROM users 
@@ -22,6 +22,8 @@ module.exports = (db) => {
       });
   };
 
+  // Checks if email/password is in database
+  // Redirects to main if it is
   router.get('/', (req, res) => {
     res.render('login_url');
   })
@@ -34,7 +36,6 @@ module.exports = (db) => {
             return;
           }
           req.session.user_id = user.email;
-          //res.send({ user: { id: user.id, name: user.username, email: user.email, phone: user.phone_number } });
           res.redirect('/');
         })
         .catch(e => res.send(e));

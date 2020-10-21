@@ -6,7 +6,7 @@ module.exports = (db) => {
 
   const addUser = function(user) {
 
-    // first check if user is already in database
+    // Checks if user is already in database
     const queryCheck = `SELECT * FROM users WHERE email = $1;`; 
     const userEmail = [user.email]; 
 
@@ -24,12 +24,13 @@ module.exports = (db) => {
       });
   };
 
+  // Renders registration page
   router.get('/', (req, res) => {
     res.render('register_url');
   }).post('/',(req,res) => {
       const user = req.body;
       user.password = bcrypt.hashSync(user.password, 12);
-      // database unique in emails
+      // database contains unique emails
     addUser(user)
       .then(user => {
         if (!user) {
@@ -40,8 +41,7 @@ module.exports = (db) => {
         res.redirect('/');
       })
       .catch(e => {
-        //res.send(e)
-        console.log(e)
+        res.send(e)
       });
   });
 
