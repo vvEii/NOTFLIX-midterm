@@ -40,16 +40,11 @@ const itemsRoutes = require("./routes/items");
 const loginRoutes = require("./routes/login");
 // registeration routes
 const registrationRoutes = require("./routes/registration");
-<<<<<<< HEAD
-// const logoutRoutes =  require("./routes/logout");
-const addItemRoutes = require("./routes/addItem");
-=======
 //logout route
 const logoutRoutes =  require("./routes/logout");
 // add item Route
 const addItemRoutes = require("./routes/addItem");
 
->>>>>>> nav
 
 // Mount all resource routes
 app.use("/login", loginRoutes(db));
@@ -61,15 +56,6 @@ app.use("/add", addItemRoutes(db));
 // Note: Feel free to replace the example routes below with your own
 // const usersRoutes = require("./routes/users");
 // const widgetsRoutes = require("./routes/widgets");
-<<<<<<< HEAD
-
-app.use("/add", addItemRoutes(db));
-
-
-// Note: mount other resources here, using the same pattern above
-
-=======
->>>>>>> nav
 
 // Home page
 // Warning: avoid creating more routes in this file!
