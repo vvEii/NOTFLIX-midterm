@@ -11,7 +11,8 @@ const router = express.Router();
 module.exports = (db) => {
   // load all items from database
   router.get("/all", (req, res) => {
-    let queryString = "SELECT * FROM items LIMIT 10";
+    let queryString =
+      "SELECT items.*, AVG(rating) AS avg_rating FROM items LEFT JOIN reviews ON items.id = item_id GROUP BY items.id;";
     db.query(queryString)
       .then((data) => {
         const items = data.rows;
@@ -23,7 +24,7 @@ module.exports = (db) => {
   // load only featured items from database
   router.get("/featured", (req, res) => {
     let queryString =
-      "SELECT * FROM items JOIN item_categories ON items.id = item_id JOIN categories ON category_id = categories.id WHERE categories.name LIKE 'featured' LIMIT 10;";
+      "SELECT * FROM items JOIN item_categories ON items.id = item_id JOIN categories ON category_id = categories.id WHERE categories.name LIKE 'featured';";
     db.query(queryString)
       .then((data) => {
         const items = data.rows;
@@ -34,7 +35,8 @@ module.exports = (db) => {
 
   // load items from price low to high
   router.get("/price-low-to-high", (req, res) => {
-    let queryString = "SELECT * FROM items ORDER BY items.price LIMIT 10;";
+    let queryString =
+      "SELECT items.*, AVG(rating) AS avg_rating FROM items LEFT JOIN reviews ON items.id = item_id GROUP BY items.id ORDER BY items.price ;";
     db.query(queryString)
       .then((data) => {
         const items = data.rows;
@@ -45,7 +47,8 @@ module.exports = (db) => {
 
   // load items from price high to low
   router.get("/price-high-to-low", (req, res) => {
-    let queryString = "SELECT * FROM items ORDER BY items.price DESC LIMIT 10;";
+    let queryString =
+      "SELECT items.*, AVG(rating) AS avg_rating FROM items LEFT JOIN reviews ON items.id = item_id GROUP BY items.id ORDER BY items.price DESC ;";
     db.query(queryString)
       .then((data) => {
         const items = data.rows;
@@ -54,5 +57,31 @@ module.exports = (db) => {
       .catch((err) => res.status(500).json({ error: err.message }));
   });
 
+  // load item details based on id from database
+  router.get("/details/:id", (req, res) => {
+    let queryString =
+      "SELECT items.*, AVG(rating) AS avg_rating FROM items LEFT JOIN reviews ON items.id = item_id WHERE items.id = $1 GROUP BY items.id;";
+    const value = [req.params.id];
+    db.query(queryString, value)
+      .then((data) => {
+        const item = data.rows;
+        res.json({ item });
+      })
+      .catch((err) => res.status(500).json({ error: err.message }));
+  });
+
+  // load item reviews based id from database
+  router.get("/reviews/:id", (req, res) => {
+    let queryString =
+      "SELECT rating, message, users.name FROM items JOIN reviews ON items.id = reviews.item_id JOIN users ON reviews.user_id = users.id WHERE items.id = $1;";
+    const value = [req.params.id];
+
+    db.query(queryString, value)
+      .then((data) => {
+        const item = data.rows;
+        res.json({ item });
+      })
+      .catch((err) => res.status(500).json({ error: err.message }));
+  });
   return router;
 };

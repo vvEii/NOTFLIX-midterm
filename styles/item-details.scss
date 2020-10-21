@@ -1,0 +1,25 @@
+@import "base";
+
+.wrapper {
+  margin: 1rem;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 40% 60%;
+  grid-template-areas: "left right-top" "left right-bottom";
+  .box-image {
+    margin: 0 auto;
+    grid-area: left;
+  }
+  .box-info {
+    .currency {
+      color: $secondary-color;
+    }
+    .checked {
+      color: $star-color;
+    }
+    grid-area: right-top;
+  }
+  .box-reviews {
+    grid-area: right-bottom;
+  }
+}
