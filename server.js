@@ -47,6 +47,7 @@ const registrationRoutes = require("./routes/registration");
 const logoutRoutes = require("./routes/logout");
 // add item Route
 const addItemRoutes = require("./routes/addItem");
+const deleteItem = require("./routes/deleteItem");
 
 
 // Mount all resource routes
@@ -55,6 +56,7 @@ app.use("/register", registrationRoutes(db));
 app.use("/logout", logoutRoutes(db));
 app.use("/api/items", itemsRoutes(db));
 app.use("/add", addItemRoutes(db));
+app.use("/delete", deleteItem(db));
 
 // Home page
 // Warning: avoid creating more routes in this file!
