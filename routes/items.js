@@ -57,9 +57,8 @@ module.exports = (db) => {
   // load item details based on id from database
   router.get("/details/:id", (req, res) => {
     let queryString =
-      "SELECT items.*, AVG(rating) AS avg_rating FROM items JOIN reviews ON items.id = item_id WHERE items.id = $1 GROUP BY items.id;";
+      "SELECT items.*, AVG(rating) AS avg_rating FROM items LEFT JOIN reviews ON items.id = item_id WHERE items.id = $1 GROUP BY items.id;";
     const value = [req.params.id];
-
     db.query(queryString, value)
       .then((data) => {
         const item = data.rows;

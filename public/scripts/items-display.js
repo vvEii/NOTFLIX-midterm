@@ -35,13 +35,16 @@ const createItemDetails = (items) => {
   const item = items[0];
   const name = item.name;
   const price = "$" + item.price;
-  const rating = Number.parseFloat(item.avg_rating).toFixed(2);
+  let rating = Number.parseFloat(item.avg_rating).toFixed(2);
   const description = item.description;
   const stock = item.stock;
   const is_sold = item.is_sold;
   const thumbnail = item.thumbnail_url;
   //const cover = item.cover_url;
 
+  if (isNaN(rating)) {
+    rating = "no ratings";
+  }
   const $item = `
   <div class="wrapper">
   <div class="box-image">
@@ -70,7 +73,7 @@ const createItem = (item) => {
   const rating = Number.parseFloat(item.avg_rating).toFixed(2);
   const thumbnail = item.thumbnail_url;
 
-  // <p> <span class="fa fa-star checked"></span> ${rating}/ 5</p>
+  //<p> <span class="fa fa-star checked"></span> ${rating}/ 5</p>
   const $item = `
     <div class="col mb-4">
     <div class="card h-100">
@@ -101,13 +104,18 @@ const addListener = (id) => {
 
 // render item reviews
 const renderReviews = (itemArr) => {
-  itemArr.forEach((ele) => {
-    let $itemReview = createReview(ele);
-    $(".box-reviews").append($itemReview);
-  });
+  if (itemArr.length === 0) {
+    const $noReviews = `<h5>No comments yet.</h5>`;
+    $(".box-reviews").append($noReviews);
+  } else {
+    itemArr.forEach((ele) => {
+      let $itemReview = createReview(ele);
+      $(".box-reviews").append($itemReview);
+    });
+  }
 };
 
-// render items that passed in
+// render items
 const renderItems = (itemArr) => {
   itemArr.forEach((ele) => {
     let $item = createItem(ele);
@@ -121,7 +129,7 @@ const renderItemAmount = (amount) => {
   $itemAmount.text(`Showing ${amount} items`);
 };
 
-// load all item reviews
+// load all item reviews from database
 const loadReviews = (id) => {
   $.get(`api/items/reviews/${id}`)
     .then((res) => {
@@ -130,7 +138,7 @@ const loadReviews = (id) => {
     .catch((err) => console.log(err));
 };
 
-// load item details information
+// load item details information from database
 const loadDetails = (id) => {
   $.get(`/api/items/details/${id}`)
     .then((res) => {
