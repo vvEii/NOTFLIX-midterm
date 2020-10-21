@@ -42,7 +42,7 @@ const createItemDetails = (items) => {
   let rating = Number.parseFloat(item.avg_rating).toFixed(2);
   const description = item.description;
   const stock = item.stock;
-  const is_sold = item.is_sold;
+  //const is_sold = item.is_sold;
   const thumbnail = item.thumbnail_url;
   //const cover = item.cover_url;
 

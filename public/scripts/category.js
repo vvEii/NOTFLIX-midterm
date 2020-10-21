@@ -2,6 +2,8 @@
 /* eslint-disable camelcase */
 $(() => {
   $(".list-group").on("click", loadItemsByCategories);
+  // removeEventListener is not a function
+  //$('.list-group').removeEventListener('click',loadItemsByCategories);
 });
 
 // load all items from the category that user clicked
