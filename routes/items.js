@@ -55,16 +55,13 @@ module.exports = (db) => {
   });
 
   router.get("/details/:id", (req, res) => {
-    let queryString = "SELECT items.*, message, AVG(rating) AS rating FROM items JOIN reviews ON items.id = item_id WHERE items.id = $1 GROUP BY items.id, message;";
+    let queryString =
+      "SELECT items.*, AVG(rating) AS avg_rating FROM items JOIN reviews ON items.id = item_id WHERE items.id = $1 GROUP BY items.id;";
     const value = [req.params.id];
 
     db.query(queryString, value)
       .then((data) => {
         const item = data.rows;
-        // const templateVar = {
-        //   item,
-        // };
-        // res.render("item_details.ejs", templateVar);
         res.json({ item });
       })
       .catch((err) => res.status(500).json({ error: err.message }));

@@ -11,12 +11,15 @@
     grid-area: left;
   }
   .box-info {
-    .currency{
+    .currency {
       color: $secondary-color;
     }
     .checked {
       color: $star-color;
     }
     grid-area: right-top;
+  }
+  .box-reviews {
+    grid-area: right-bottom;
   }
 }

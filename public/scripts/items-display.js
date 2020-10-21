@@ -23,20 +23,26 @@ $(() => {
     }
   });
 });
+
+// create item reviews
+const createReviews = (items) => {
+  // let $reviews = '';
+  // items.forEach((ele) => $reviews += `<h3>From user ${ele.user_id}</h3><p>${ele.message}</p>`);
+  // return $reviews;
+};
+
 // create item details element
 const createItemDetails = (items) => {
   const item = items[0];
   const name = item.name;
   const price = "$" + item.price;
-  const rating = item.rating;
+  const rating = Number.parseFloat(item.avg_rating).toFixed(2);
   const description = item.description;
   const stock = item.stock;
   const is_sold = item.is_sold;
   const thumbnail = item.thumbnail_url;
-  const cover = item.cover_url;
-  const reviews = [];
-  items.forEach((ele) => reviews.push(ele.message));
-  console.log(reviews);
+  //const cover = item.cover_url;
+
   const $item = `
   <div class="wrapper">
   <div class="box-image">
@@ -47,7 +53,10 @@ const createItemDetails = (items) => {
     <h5 class="currency">CDN ${price}</h5>
     <h5><span class="fa fa-star checked"></span> ${rating}/ 5</h5>
     <h5>Stocks: ${stock}</h5>
+    <h5>Description:</h5>
     <p>${description}</p>
+  </div>
+  <div class="box-reviews">
   </div>
   </div>
   `;
@@ -60,8 +69,10 @@ const createItem = (item) => {
   const id = item.id;
   const name = item.name;
   const price = "$" + item.price;
+  const rating = Number.parseFloat(item.avg_rating).toFixed(2);
   const thumbnail = item.thumbnail_url;
 
+  // <p> <span class="fa fa-star checked"></span> ${rating}/ 5</p>
   const $item = `
     <div class="col mb-4">
     <div class="card h-100">
@@ -76,6 +87,15 @@ const createItem = (item) => {
   return $item;
 };
 
+// load all item reviews
+const loadReviews = (id) => {
+  $.get(`api/items/reviews/${id}`)
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((err) => console.log(err));
+};
+
 // load item details information
 const loadDetails = (id) => {
   $.get(`/api/items/details/${id}`)
@@ -83,7 +103,9 @@ const loadDetails = (id) => {
       const $outterContainer = $(".outter-container");
       $outterContainer.hide();
       const $itemDetails = createItemDetails(res.item);
+      const $reviews = createReviews(res.item);
       $("header").after($itemDetails);
+      $(".box-reviews").append($reviews);
     })
     .catch((err) => console.log(err));
 };
