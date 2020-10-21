@@ -11,7 +11,8 @@ const router = express.Router();
 module.exports = (db) => {
   // load all items from database
   router.get("/all", (req, res) => {
-    let queryString = "SELECT items.*, AVG(rating) AS avg_rating FROM items LEFT JOIN reviews ON items.id = item_id GROUP BY items.id;";
+    let queryString =
+      "SELECT items.*, AVG(rating) AS avg_rating FROM items LEFT JOIN reviews ON items.id = item_id GROUP BY items.id;";
     db.query(queryString)
       .then((data) => {
         const items = data.rows;
@@ -34,7 +35,8 @@ module.exports = (db) => {
 
   // load items from price low to high
   router.get("/price-low-to-high", (req, res) => {
-    let queryString = "SELECT items.*, AVG(rating) AS avg_rating FROM items LEFT JOIN reviews ON items.id = item_id GROUP BY items.id ORDER BY items.price ;";
+    let queryString =
+      "SELECT items.*, AVG(rating) AS avg_rating FROM items LEFT JOIN reviews ON items.id = item_id GROUP BY items.id ORDER BY items.price ;";
     db.query(queryString)
       .then((data) => {
         const items = data.rows;
@@ -45,7 +47,8 @@ module.exports = (db) => {
 
   // load items from price high to low
   router.get("/price-high-to-low", (req, res) => {
-    let queryString = "SELECT items.*, AVG(rating) AS avg_rating FROM items LEFT JOIN reviews ON items.id = item_id GROUP BY items.id ORDER BY items.price DESC ;";
+    let queryString =
+      "SELECT items.*, AVG(rating) AS avg_rating FROM items LEFT JOIN reviews ON items.id = item_id GROUP BY items.id ORDER BY items.price DESC ;";
     db.query(queryString)
       .then((data) => {
         const items = data.rows;
@@ -70,7 +73,7 @@ module.exports = (db) => {
   // load item reviews based id from database
   router.get("/reviews/:id", (req, res) => {
     let queryString =
-      "SELECT message, users.name FROM items JOIN reviews ON items.id = reviews.item_id JOIN users ON reviews.user_id = users.id WHERE items.id = $1;";
+      "SELECT rating, message, users.name FROM items JOIN reviews ON items.id = reviews.item_id JOIN users ON reviews.user_id = users.id WHERE items.id = $1;";
     const value = [req.params.id];
 
     db.query(queryString, value)

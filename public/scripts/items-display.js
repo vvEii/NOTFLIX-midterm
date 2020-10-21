@@ -26,7 +26,12 @@ $(() => {
 
 // create item reviews
 const createReview = (item) => {
-  let $reviews = `<h3>From user ${item.name}</h3><p>${item.message}</p>`;
+
+  const rating = Number.parseFloat(item.rating).toFixed(2);
+  let $reviews = `
+  <p><span class="fa fa-star checked"></span>${rating}/5</p>
+  <h3>From ${item.name}</h3><p>${item.message}</p>
+  `;
   return $reviews;
 };
 
@@ -102,7 +107,7 @@ const addListener = (id) => {
   const $name = $(`.item-name-${id}`);
 
   // use closure to pass the function with parameter "id"
-  $image.on("click", (e) => {
+  $image.on("click", () => {
     return loadDetails(id);
   });
   $name.on("click", () => {
@@ -117,7 +122,8 @@ const renderReviews = (itemArr) => {
     $(".box-reviews").append($noReviews);
   } else {
     itemArr.forEach((ele) => {
-      let $itemReview = createReview(ele);
+      let $itemReview = "<h3>Reviews</h3>";
+      $itemReview += createReview(ele);
       $(".box-reviews").append($itemReview);
     });
   }
@@ -148,6 +154,13 @@ const loadReviews = (id) => {
 
 // load item details information from database
 const loadDetails = (id) => {
+  // --------------issue: removeEventListener is not a function, and how to remove anonymous function
+  // const $image = $(`.item-img-${id}`);
+  // const $name = $(`.item-name-${id}`);
+
+  // $image.removeEventListener("click", loadDetails);
+  // $name.removeEventListener("click", loadDetails);
+
   $.get(`/api/items/details/${id}`)
     .then((res) => {
       const $outterContainer = $(".outter-container");
