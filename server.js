@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 // load .env data into process.env
 require("dotenv").config();
 
@@ -43,10 +44,12 @@ const itemsRoutes = require("./routes/items");
 const loginRoutes = require("./routes/login");
 // registeration routes
 const registrationRoutes = require("./routes/registration");
-//logout route
+// logout routes
 const logoutRoutes = require("./routes/logout");
-// add item Route
+// add item routes
 const addItemRoutes = require("./routes/addItem");
+// categories routes
+const categoriesRoutes = require('./routes/categories');
 
 // Mount all resource routes
 app.use("/login", loginRoutes(db));
@@ -54,6 +57,7 @@ app.use("/register", registrationRoutes(db));
 app.use("/logout", logoutRoutes(db));
 app.use("/api/items", itemsRoutes(db));
 app.use("/add", addItemRoutes(db));
+app.use('/categories', categoriesRoutes(db));
 
 // Home page
 // Warning: avoid creating more routes in this file!
