@@ -25,10 +25,9 @@ $(() => {
 });
 
 // create item reviews
-const createReviews = (items) => {
-  // let $reviews = '';
-  // items.forEach((ele) => $reviews += `<h3>From user ${ele.user_id}</h3><p>${ele.message}</p>`);
-  // return $reviews;
+const createReview = (item) => {
+  let $reviews = `<h3>From user ${item.name}</h3><p>${item.message}</p>`;
+  return $reviews;
 };
 
 // create item details element
@@ -60,7 +59,6 @@ const createItemDetails = (items) => {
   </div>
   </div>
   `;
-
   return $item;
 };
 
@@ -87,29 +85,6 @@ const createItem = (item) => {
   return $item;
 };
 
-// load all item reviews
-const loadReviews = (id) => {
-  $.get(`api/items/reviews/${id}`)
-    .then((res) => {
-      console.log(res);
-    })
-    .catch((err) => console.log(err));
-};
-
-// load item details information
-const loadDetails = (id) => {
-  $.get(`/api/items/details/${id}`)
-    .then((res) => {
-      const $outterContainer = $(".outter-container");
-      $outterContainer.hide();
-      const $itemDetails = createItemDetails(res.item);
-      const $reviews = createReviews(res.item);
-      $("header").after($itemDetails);
-      $(".box-reviews").append($reviews);
-    })
-    .catch((err) => console.log(err));
-};
-
 // add listener to item name and image
 const addListener = (id) => {
   const $image = $(`.item-img-${id}`);
@@ -121,6 +96,14 @@ const addListener = (id) => {
   });
   $name.on("click", () => {
     return loadDetails(id);
+  });
+};
+
+// render item reviews
+const renderReviews = (itemArr) => {
+  itemArr.forEach((ele) => {
+    let $itemReview = createReview(ele);
+    $(".box-reviews").append($itemReview);
   });
 };
 
@@ -136,6 +119,28 @@ const renderItems = (itemArr) => {
 const renderItemAmount = (amount) => {
   const $itemAmount = $(".item-amount");
   $itemAmount.text(`Showing ${amount} items`);
+};
+
+// load all item reviews
+const loadReviews = (id) => {
+  $.get(`api/items/reviews/${id}`)
+    .then((res) => {
+      renderReviews(res.item);
+    })
+    .catch((err) => console.log(err));
+};
+
+// load item details information
+const loadDetails = (id) => {
+  $.get(`/api/items/details/${id}`)
+    .then((res) => {
+      const $outterContainer = $(".outter-container");
+      $outterContainer.hide();
+      const $itemDetails = createItemDetails(res.item);
+      $("header").after($itemDetails);
+      loadReviews(id);
+    })
+    .catch((err) => console.log(err));
 };
 
 // load all items from database

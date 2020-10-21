@@ -54,6 +54,7 @@ module.exports = (db) => {
       .catch((err) => res.status(500).json({ error: err.message }));
   });
 
+  // load item details based on id from database
   router.get("/details/:id", (req, res) => {
     let queryString =
       "SELECT items.*, AVG(rating) AS avg_rating FROM items JOIN reviews ON items.id = item_id WHERE items.id = $1 GROUP BY items.id;";
@@ -67,5 +68,18 @@ module.exports = (db) => {
       .catch((err) => res.status(500).json({ error: err.message }));
   });
 
+  // load item reviews based id from database
+  router.get("/reviews/:id", (req, res) => {
+    let queryString =
+      "SELECT message, users.name FROM items JOIN reviews ON items.id = reviews.item_id JOIN users ON reviews.user_id = users.id WHERE items.id = $1;";
+    const value = [req.params.id];
+
+    db.query(queryString, value)
+      .then((data) => {
+        const item = data.rows;
+        res.json({ item });
+      })
+      .catch((err) => res.status(500).json({ error: err.message }));
+  });
   return router;
 };
