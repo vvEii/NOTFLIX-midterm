@@ -121,9 +121,10 @@ const renderReviews = (itemArr) => {
     const $noReviews = `<h5>No comments yet.</h5>`;
     $(".box-reviews").append($noReviews);
   } else {
+    let $reviewTitle = "<h3>Reviews</h3>";
+    $(".box-reviews").append($reviewTitle);
     itemArr.forEach((ele) => {
-      let $itemReview = "<h3>Reviews</h3>";
-      $itemReview += createReview(ele);
+      const $itemReview = createReview(ele);
       $(".box-reviews").append($itemReview);
     });
   }
