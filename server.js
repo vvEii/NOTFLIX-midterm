@@ -54,25 +54,21 @@ app.use("/register", registrationRoutes(db));
 app.use("/logout", logoutRoutes(db));
 app.use("/api/items", itemsRoutes(db));
 app.use("/add", addItemRoutes(db));
-// Separated Routes for each Resource
-// Note: Feel free to replace the example routes below with your own
-// const usersRoutes = require("./routes/users");
-// const widgetsRoutes = require("./routes/widgets");
 
 // Home page
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 app.get("/", (req, res) => {
+  let user_info = {};
   if (!req.session.user_info) {
-    const user_info = {
+    user_info = {
       name: null,
       is_admin: null,
     };
-    res.render("index", user_info);
   } else {
     user_info = req.session.user_info;
-    res.render("index", user_info);
   }
+  res.render("index", user_info);
 });
 
 app.listen(PORT, () => {

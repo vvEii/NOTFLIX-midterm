@@ -166,7 +166,7 @@ const loadDetails = (id) => {
       const $outterContainer = $(".outter-container");
       $outterContainer.hide();
       const $itemDetails = createItemDetails(res.item);
-      $("header").after($itemDetails);
+      $(".navbar").after($itemDetails);
       loadReviews(id);
     })
     .catch((err) => console.log(err));
