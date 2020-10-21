@@ -11,7 +11,7 @@ const router = express.Router();
 module.exports = (db) => {
   // load all items from database
   router.get("/all", (req, res) => {
-    let queryString = "SELECT * FROM items LIMIT 10";
+    let queryString = "SELECT items.*, AVG(rating) AS avg_rating FROM items LEFT JOIN reviews ON items.id = item_id GROUP BY items.id;";
     db.query(queryString)
       .then((data) => {
         const items = data.rows;
@@ -23,7 +23,7 @@ module.exports = (db) => {
   // load only featured items from database
   router.get("/featured", (req, res) => {
     let queryString =
-      "SELECT * FROM items JOIN item_categories ON items.id = item_id JOIN categories ON category_id = categories.id WHERE categories.name LIKE 'featured' LIMIT 10;";
+      "SELECT * FROM items JOIN item_categories ON items.id = item_id JOIN categories ON category_id = categories.id WHERE categories.name LIKE 'featured';";
     db.query(queryString)
       .then((data) => {
         const items = data.rows;
@@ -34,7 +34,7 @@ module.exports = (db) => {
 
   // load items from price low to high
   router.get("/price-low-to-high", (req, res) => {
-    let queryString = "SELECT * FROM items ORDER BY items.price LIMIT 10;";
+    let queryString = "SELECT items.*, AVG(rating) AS avg_rating FROM items LEFT JOIN reviews ON items.id = item_id GROUP BY items.id ORDER BY items.price ;";
     db.query(queryString)
       .then((data) => {
         const items = data.rows;
@@ -45,7 +45,7 @@ module.exports = (db) => {
 
   // load items from price high to low
   router.get("/price-high-to-low", (req, res) => {
-    let queryString = "SELECT * FROM items ORDER BY items.price DESC LIMIT 10;";
+    let queryString = "SELECT items.*, AVG(rating) AS avg_rating FROM items LEFT JOIN reviews ON items.id = item_id GROUP BY items.id ORDER BY items.price DESC ;";
     db.query(queryString)
       .then((data) => {
         const items = data.rows;

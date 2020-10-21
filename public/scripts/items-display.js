@@ -44,6 +44,8 @@ const createItemDetails = (items) => {
 
   if (isNaN(rating)) {
     rating = "no ratings";
+  } else {
+    rating += "/5";
   }
   const $item = `
   <div class="wrapper">
@@ -53,7 +55,7 @@ const createItemDetails = (items) => {
   <div class="box-info">
     <h3>${name}</h3>
     <h5 class="currency">CDN ${price}</h5>
-    <h5><span class="fa fa-star checked"></span> ${rating}/ 5</h5>
+    <h5><span class="fa fa-star checked"></span> ${rating}</h5>
     <h5>Stocks: ${stock}</h5>
     <h5>Description:</h5>
     <p>${description}</p>
@@ -70,10 +72,15 @@ const createItem = (item) => {
   const id = item.id;
   const name = item.name;
   const price = "$" + item.price;
-  const rating = Number.parseFloat(item.avg_rating).toFixed(2);
+  let rating = Number.parseFloat(item.avg_rating).toFixed(2);
   const thumbnail = item.thumbnail_url;
 
-  //<p> <span class="fa fa-star checked"></span> ${rating}/ 5</p>
+  if (isNaN(rating)) {
+    rating = "no ratings";
+  } else {
+    rating += "/5";
+  }
+
   const $item = `
     <div class="col mb-4">
     <div class="card h-100">
@@ -81,6 +88,7 @@ const createItem = (item) => {
       <div class="card-body">
         <h5 class="card-title item-name-${id}">${name}</h5>
         <p> ${price}</p>
+        <p> <span class="fa fa-star checked"></span> ${rating}</p>
       </div>
     </div>
   </div>
