@@ -23,3 +23,27 @@
     grid-area: right-bottom;
   }
 }
+//form
+.form-delete {
+  border-radius: 5px;
+  margin: 10px 200px 10px 200px;
+  display: flex;
+  justify-content: center;
+
+  .delete-btn {
+    background-color: red;
+    color: white;
+    padding: 14px 20px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    width: 30%;
+    height: 47px;
+    opacity: 0.8;
+  }
+
+  .delete-btn:hover {
+    opacity:1;
+    color: black;
+  }
+}

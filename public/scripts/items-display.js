@@ -64,10 +64,12 @@ const createItemDetails = (items) => {
     <h5>Stocks: ${stock}</h5>
     <h5>Description:</h5>
     <p>${description}</p>
-  </div>
-  <div class="box-reviews">
-  </div>
-  </div>
+    </div>
+    <div class="box-reviews"></div>
+    </div>
+    <form class="form-delete" action="/delete/${item.id}" method="POST">
+    <button class="delete-btn" type="submit">Delete</button>
+    </form>
   `;
   return $item;
 };
