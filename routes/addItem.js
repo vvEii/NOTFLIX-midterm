@@ -1,9 +1,9 @@
+const { use } = require('bcrypt/promises');
 const express = require('express');
 const router  = express.Router();
 
 module.exports = (db) => {
   const addItem = function(item) {
-
     // first check if item is already in database
     const queryCheck = `SELECT * FROM items WHERE name = $1;`; 
 
@@ -18,16 +18,33 @@ module.exports = (db) => {
           const values = [item.name, 1, parseInt(item.price), item.description, item.thumbnail_url, item.cover_url, parseInt(item.stock)];
           return db.query(queryString, values)
             .then(res => {
-              return res.rows[0]
+              return res.rows
             });
         } else {
-          return null;
+            return null;
         }
       });
   };
+      
+  // const getUserInfo = function(id) {
+  //   const query = `SELECT name, email,phone_number, is_admin  FROM users
+  //   WHERE id = $1`;
+  //   return db.query(query, [id]) 
+  //   .then(userData => {
+  //     console.log('userdata', userData.rows[0])
+  //     return userData.rows[0]
+  //   });
+  // }
   
   router.get('/', (req, res) => {
-    res.render('add_item');
+    if (!req.session.user_info){
+      res.redirect('/login')
+    } else if (req.session.user_info.is_admin) {
+      const user = req.session.user_info
+      res.render('add_item', user);
+    } else {
+      res.redirect('/')
+    }
   }).post('/',(req,res) => {
     const item = req.body;
     addItem(item)
@@ -36,11 +53,11 @@ module.exports = (db) => {
           res.status(401).send({ error: "item already in system!" });
           return;
         }
-        req.session.user_id = user.email;
+        // req.session.user_id = user.email;
         res.redirect('/add');
       })
       .catch(console.log);
-  });
+    });
   
   
   return router;

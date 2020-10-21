@@ -23,22 +23,27 @@ module.exports = (db) => {
   };
 
   // Checks if email/password is in database
-  // Redirects to main if it is
   router.get('/', (req, res) => {
-    res.render('login_url');
+    if (req.session.user_info) {
+      res.redirect('/');
+    } else {
+      res.render('login_url');
+    }
   })
     .post('/', (req,res) => {
       const { email, password } = req.body;
       login(email, password)
         .then(user => {
           if (!user) {
-            res.status(401).send({ error: "Email or Password don't match" });
+            res.status(401).send({ error: 'Email or Password don\'t match' });
             return;
           }
-          req.session.user_id = user.email;
+          req.session.user_info = user;
           res.redirect('/');
         })
-        .catch(e => res.send(e));
+        .catch(e => {
+          res.send(e)
+        });
     });
  
 

@@ -1,8 +1,10 @@
+@import "base";
+
 .item-list-container {
   margin-left: 1rem;
-  .col .mb-4 {
+  .checked {
+    color: $star-color;
   }
-
   .card {
     border: none;
   }
