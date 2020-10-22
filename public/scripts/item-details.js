@@ -18,8 +18,8 @@ const addReview = () => {
   $.post("/review/add", review)
     .then((res) => {
       if (res) {
-        //$('.box-reviews').empty();
-        //loadReviews(itemID);
+        $('.box-reviews').empty();
+        loadReviews(itemID);
       } else {
         console.log("add review failed");
       }
