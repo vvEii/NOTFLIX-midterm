@@ -11,6 +11,28 @@
     grid-area: left;
   }
   .box-info {
+    .box-name-heart {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      h3 {
+        margin-right: 1rem;
+      }
+
+      .un-favorite {
+        // & how this work?
+        // &.active {
+        //   .fa-heart {
+        //     color: orange;
+        //     margin-bottom: 0.5rem;
+        //   }
+        // }
+        .fa-heart {
+          color: $secondary-color;
+          margin-bottom: 0.5rem;
+        }
+      }
+    }
     .currency {
       color: $secondary-color;
     }

@@ -25,7 +25,7 @@ module.exports = (db) => {
   // load only featured items from database
   router.get("/featured", (req, res) => {
     let queryString =
-      "SELECT * FROM items JOIN item_categories ON items.id = item_id JOIN categories ON category_id = categories.id WHERE categories.name LIKE 'featured';";
+      "SELECT items.* ,AVG(rating) AS avg_rating FROM items JOIN item_categories ON items.id = item_id JOIN categories ON category_id = categories.id LEFT JOIN reviews ON items.id = reviews.item_id WHERE categories.name ILIKE 'featured' GROUP BY items.id;";
     db.query(queryString)
       .then((data) => {
         const items = data.rows;
