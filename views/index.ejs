@@ -24,7 +24,7 @@
 
   <body>
     <%- include('partials/_header') %>
-    <% if (is_admin) {%>
+    <% if (user.is_admin) {%>
       <button class="btn-delete">delete</button>
     <% } %>
     <div class="outter-container">
