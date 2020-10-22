@@ -8,4 +8,14 @@
   .card {
     border: none;
   }
+  .card-body {
+    padding: 1.25rem 0;
+    .card-title {
+      height: 4rem;
+    }
+    .card-body-bottom {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
 }
