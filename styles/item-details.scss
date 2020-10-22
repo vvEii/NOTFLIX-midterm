@@ -28,6 +28,42 @@
   .box-reviews {
     grid-area: right-bottom;
     margin-top: 40px;
+
+    .review-title {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: beige;
+
+      .review-text {
+        font-size: 15px ;
+        margin-left: 10px;
+        margin-right: 10px;
+        margin-bottom: 0px;
+      }
+    }
+
+    .review-sites {
+      margin-top: 5px;
+      border: 2px solid black;
+      border-radius: 5px;
+      padding-left: 5px;
+      padding-right: 5px;
+
+      .review-people {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .reviewer-name {
+          font-size: 20px ;
+        }
+        
+        .detail-review {
+          font-size: 12px;
+        }        
+      }
+    }
   }
 }
 //form
@@ -54,58 +90,23 @@
   }
 }
 
-.descrip-title {
-  font-size: 15px;
-  background-color: beige;
-}
-
-.description:hover {
-  box-shadow: 5px 10px #888888;
-}
-
 .description {
   margin-top: 20px;
-}
 
-.review-title {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: beige;
-}
+  .descrip-title {
+    font-size: 15px;
+    background-color: beige;
+  }
 
-.review-text {
-  font-size: 15px ;
-  margin-left: 10px;
-  margin-right: 10px;
-  margin-bottom: 0px;
+  .description:hover {
+    box-shadow: 5px 10px #888888;
+  }
 }
 
 .fa-star {
   color: orange;
 }
 
-.review-people {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.review-sites {
-  margin-top: 5px;
-  border: 2px solid black;
-  border-radius: 5px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-.reviewer-name {
-  font-size: 20px ;
-}
-
 section:hover {
   box-shadow: 5px 10px #888888;
-}
-
-.detail-review {
-  font-size: 12px;
 }
