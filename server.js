@@ -53,6 +53,8 @@ const deleteItem = require("./routes/deleteItem");
 const categoriesRoutes = require('./routes/categories');
 // favorite routes
 const favoriteRoutes = require('./routes/favorite');
+// review routes
+const reviewRoutes = require('./routes/review');
 
 
 // Mount all resource routes
@@ -64,6 +66,7 @@ app.use("/add", addItemRoutes(db));
 app.use("/delete", deleteItem(db));
 app.use('/categories', categoriesRoutes(db));
 app.use('/favorite',favoriteRoutes(db));
+app.use('/review', reviewRoutes(db));
 
 // Home page
 // Warning: avoid creating more routes in this file!

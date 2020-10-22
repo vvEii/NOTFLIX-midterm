@@ -15,7 +15,7 @@ const addReview = () => {
     message,
     itemID,
   };
-  $.post("", review)
+  $.post("/review/add", review)
     .then((res) => console.log(res))
     .catch((err) => console.log(err));
 };
@@ -108,7 +108,7 @@ const renderReviews = (itemArr) => {
   <div class="flex-container">
     <textarea name="text" id="review-text"></textarea>
     <div class="rating-container">
-    <h5>Rating(range from 0.00 to 5.00, 2 decimal places)</h5>
+    <h5>Rating(range from 0 to 5, integer only)</h5>
     <input type="text" id="new-review-rating"></input>
     </div>
     <button class="btn-submit-review" onclick="addReview()">add</button>
