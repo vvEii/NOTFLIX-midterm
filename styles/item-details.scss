@@ -30,7 +30,6 @@
       h3 {
         margin-right: 1rem;
       }
-
       .un-favorite {
         // & how this work?
         // &.active {
@@ -45,102 +44,30 @@
         }
       }
     }
+    .box-price-rating{
+      display: flex;
+      justify-content: space-between;
+    }
     .currency {
       color: $secondary-color;
     }
     .checked {
       color: $star-color;
     }
-    .section-one {
-      display: flex;
-      justify-content: space-between;
-      padding-top: 5px;
-      font-family: Arial, Helvetica, sans-serif;
-    }
     grid-area: right-top;
   }
   .box-reviews {
     grid-area: right-bottom;
     margin-top: 40px;
-
-    .review-title {
+    .review-btn-container {
       display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: beige;
-
-      .review-text {
-        font-size: 15px;
-        margin-left: 10px;
-        margin-right: 10px;
-        margin-bottom: 0px;
-      }
-    }
-
-    .review-sites {
-      margin-top: 5px;
-      border: 2px solid black;
-      border-radius: 5px;
-      padding-left: 5px;
-      padding-right: 5px;
-
-      .review-people {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-
-        .reviewer-name {
-          font-size: 20px;
-        }
-
-        .detail-review {
-          font-size: 12px;
-        }
+      justify-content: space-between;
+      .btn-add-review {
+        color: $secondary-color;
+        background-color: white;
+        border: none;
+        font-size: 2rem;
       }
     }
   }
-}
-//form
-.form-delete {
-  border-radius: 5px;
-  display: flex;
-  justify-content: center;
-
-  .delete-btn {
-    background-color: red;
-    color: white;
-    padding: 14px 20px;
-    border-radius: 5px;
-    border: none;
-    cursor: pointer;
-    width: 30%;
-    height: 47px;
-    opacity: 0.8;
-  }
-
-  .delete-btn:hover {
-    opacity: 1;
-    color: black;
-  }
-}
-
-.description {
-  margin-top: 20px;
-
-  .descrip-title {
-    font-size: 15px;
-    background-color: beige;
-  }
-
-  .description:hover {
-    box-shadow: 5px 10px #888888;
-  }
-}
-
-.fa-star {
-  color: orange;
-}
-
-section:hover {
-  box-shadow: 5px 10px #888888;
 }

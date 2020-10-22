@@ -47,8 +47,10 @@ const createItemDetails = (items, favoriteItemIDs) => {
     <h3 >${name}</h3>
     ${$favoriteEle}
   </div>
+  <div class="box-price-rating">
     <h5 class="currency">CDN ${price}</h5>
     <h5><span class="fa fa-star checked"></span> ${rating}</h5>
+    </div>
     <h5>Stocks: ${stock}</h5>
     <h5>Description:</h5>
     <p>${description} (movie ID: <span id="item-id">${itemID}</span>)</p>
@@ -62,12 +64,15 @@ const createItemDetails = (items, favoriteItemIDs) => {
 
 // render item reviews
 const renderReviews = (itemArr) => {
+  let $reviewTitle = `<div class="review-btn-container">
+  <h3>Reviews</h3>
+  <button class="btn-add-review">Add Reviews</button>
+  </div>`;
+  $(".box-reviews").append($reviewTitle);
   if (itemArr.length === 0) {
     const $noReviews = `<h5>No comments yet.</h5>`;
     $(".box-reviews").append($noReviews);
   } else {
-    let $reviewTitle = "<h3>Reviews</h3>";
-    $(".box-reviews").append($reviewTitle);
     itemArr.forEach((ele) => {
       const $itemReview = createReview(ele);
       $(".box-reviews").append($itemReview);
