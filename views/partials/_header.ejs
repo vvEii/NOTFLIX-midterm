@@ -1,11 +1,14 @@
-<nav class="navbar navbar-expand-lg navbar-dark">
+<link rel="stylesheet" href="/styles/nav.css" type="text/css" />
+
+
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
   <a class="navbar-brand" href="/">NETFLIX</a>
-  <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
-  </button> -->
+  </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <div class="navbar-nav" id="list">
+    <div class="navbar-nav mr-auto" id="list">
       <ul class="navbar-nav" id="list">
         <li class="nav-item active">
           <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
@@ -22,15 +25,9 @@
         </li>
       </ul>
     </div>
-    <!-- <div class="navbar-nav" id="search">
-      <input type="text" class="form-control" placeholder="Search" aria-label="Recipient's username" aria-describedby="button-addon2">
-      <div class="input-group-append">
-        <button class="btn" type="button" id="button-addon2">Search</button>
-      </div>
-    </div> -->
     <% if (user.name) {%>
     <form class="navbar-nav form-inline my-2 my-lg-0" method="POST" action="/logout" id="form">
-      <span class="navbar-text text-white bg-dark">Welcome <%= user.name %></span>
+      <span class="navbar nav-text">Welcome <%= user.name %></span>
       <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Logout</button>
     </form>
     <% } else { %>
