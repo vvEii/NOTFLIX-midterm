@@ -1,6 +1,7 @@
 /* eslint-disable no-undef */
 $(() => {
-  $(".btn-add-review").on("click", showNewReview);
+  // again this won't work
+  //$(".btn-add-review").on("click", showNewReview);
 });
 
 const showNewReview = () => {
@@ -18,8 +19,11 @@ const showNewReview = () => {
 const createReview = (item) => {
   const rating = Number.parseFloat(item.rating).toFixed(2);
   let $reviews = `
-  <p><span class="fa fa-star checked"></span>${rating}/5</p>
-  <h3>From ${item.name}</h3><p>${item.message}</p>
+  <div class="review">
+  <h5>From <span class="user-name">${item.name}</span></h5>
+  <h5><span class="fa fa-star checked"></span>${rating}/5</h5>
+  </div>
+  <p>${item.message}</p>
   `;
   return $reviews;
 };
@@ -68,7 +72,7 @@ const createItemDetails = (items, favoriteItemIDs) => {
     <h5>Stocks: ${stock}</h5>
     <h5>Description:</h5>
     <p>${description} (movie ID: <span id="item-id">${itemID}</span>)</p>
-    <button>Add to cart</button>
+    <button class="btn-add-cart">Add to Cart   <i class="fas fa-shopping-cart"></i></button>
   </div>
   <div class="box-reviews">
   </div>
@@ -85,8 +89,14 @@ const renderReviews = (itemArr) => {
     <button class="btn-add-review" onClick="showNewReview()">Add Reviews</button>
   </div>
   <div class="new-review-container">
+  <div class="flex-container">
     <textarea name="text" id="review-text"></textarea>
-    <button type="submit">add</button>
+    <div class="rating-container">
+    <h5>Rating(range from 0.00 to 5.00, 2 decimal places)</h5>
+    <input type="text" id="new-review-rating"></input>
+    </div>
+    <button class="btn-submit-review" type="submit">add</button>
+    </div>
   </div>
   `;
   $(".box-reviews").append($reviewTitle);
