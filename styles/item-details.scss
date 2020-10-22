@@ -2,6 +2,8 @@
 
 .btn-delete {
   display: none;
+  position: fixed;
+  bottom:0;
   width: 100%;
   height: 6vh;
   background-color: $secondary-color;
@@ -44,7 +46,7 @@
         }
       }
     }
-    .box-price-rating{
+    .box-price-rating {
       display: flex;
       justify-content: space-between;
     }
@@ -70,4 +72,8 @@
       }
     }
   }
+}
+
+.new-review-container {
+  visibility: hidden;
 }

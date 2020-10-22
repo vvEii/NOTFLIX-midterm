@@ -1,4 +1,20 @@
 /* eslint-disable no-undef */
+$(() =>{
+  $('.btn-add-review').on('click',showNewReview);
+});
+
+const showNewReview = () => {
+  console.log('ss');
+  const $newReviewContainer = $('.review-btn-container');
+  if ($newReviewContainer.is(':hidden')) {
+    console.log('ss');
+    $newReviewContainer.slideDown('slow');
+    const $textArea = $('#tweet-text');
+    $textArea.focus();
+  } else {
+    $newReviewContainer.slideUp('slow');
+  }
+};
 
 // create item reviews
 const createReview = (item) => {
@@ -54,6 +70,7 @@ const createItemDetails = (items, favoriteItemIDs) => {
     <h5>Stocks: ${stock}</h5>
     <h5>Description:</h5>
     <p>${description} (movie ID: <span id="item-id">${itemID}</span>)</p>
+    <button>Add to cart</button>
   </div>
   <div class="box-reviews">
   </div>
@@ -67,7 +84,15 @@ const renderReviews = (itemArr) => {
   let $reviewTitle = `<div class="review-btn-container">
   <h3>Reviews</h3>
   <button class="btn-add-review">Add Reviews</button>
-  </div>`;
+  </div>
+  <form>
+  <div class="new-review-container">
+  <textarea name="text" id="tweet-text"></textarea>
+  <div>
+    <button type="submit">Tweet</button
+  </div>
+  </div>
+</form>`;
   $(".box-reviews").append($reviewTitle);
   if (itemArr.length === 0) {
     const $noReviews = `<h5>No comments yet.</h5>`;
