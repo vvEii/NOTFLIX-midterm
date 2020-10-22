@@ -1,11 +1,52 @@
 /* eslint-disable no-undef */
+$(() => {
+  // again this won't work
+  //$(".btn-add-review").on("click", showNewReview);
+  //$(".btn-submit-review").click(addReview);
+});
+
+const addReview = () => {
+  const rating = $("#new-review-rating").val();
+  const message = $("#review-text").val();
+  const itemID = $("#item-id").text();
+
+  const review = {
+    rating,
+    message,
+    itemID,
+  };
+  $.post("/review/add", review)
+    .then((res) => {
+      if (res) {
+        $('.box-reviews').empty();
+        loadReviews(itemID);
+      } else {
+        console.log("add review failed");
+      }
+    })
+    .catch((err) => console.log(err));
+};
+
+const showNewReview = () => {
+  const $newReviewContainer = $(".new-review-container");
+  if ($newReviewContainer.css("display") === "none") {
+    $newReviewContainer.slideDown("slow");
+    const $textArea = $("#review-text");
+    $textArea.focus();
+  } else {
+    $newReviewContainer.slideUp("slow");
+  }
+};
 
 // create item reviews
 const createReview = (item) => {
   const rating = Number.parseFloat(item.rating).toFixed(2);
   let $reviews = `
-  <p><span class="fa fa-star checked"></span>${rating}/5</p>
-  <h3>From ${item.name}</h3><p>${item.message}</p>
+  <div class="review">
+  <h5>From <span class="user-name">${item.name}</span></h5>
+  <h5><span class="fa fa-star checked"></span>${rating}/5</h5>
+  </div>
+  <p>${item.message}</p>
   `;
   return $reviews;
 };
@@ -54,6 +95,7 @@ const createItemDetails = (items, favoriteItemIDs) => {
     <h5>Stocks: ${stock}</h5>
     <h5>Description:</h5>
     <p>${description} (movie ID: <span id="item-id">${itemID}</span>)</p>
+    <button class="btn-add-cart">Add to Cart   <i class="fas fa-shopping-cart"></i></button>
   </div>
   <div class="box-reviews">
   </div>
@@ -64,10 +106,22 @@ const createItemDetails = (items, favoriteItemIDs) => {
 
 // render item reviews
 const renderReviews = (itemArr) => {
-  let $reviewTitle = `<div class="review-btn-container">
-  <h3>Reviews</h3>
-  <button class="btn-add-review">Add Reviews</button>
-  </div>`;
+  let $reviewTitle = `
+  <div class="review-title-container">
+    <span class="review-title">Reviews</span>
+    <button class="btn-add-review" onClick="showNewReview()">Add Reviews</button>
+  </div>
+  <div class="new-review-container">
+  <div class="flex-container">
+    <textarea name="text" id="review-text"></textarea>
+    <div class="rating-container">
+    <h5>Rating(range from 0 to 5, integer only)</h5>
+    <input type="text" id="new-review-rating"></input>
+    </div>
+    <button class="btn-submit-review" onclick="addReview()">add</button>
+    </div>
+  </div>
+  `;
   $(".box-reviews").append($reviewTitle);
   if (itemArr.length === 0) {
     const $noReviews = `<h5>No comments yet.</h5>`;
@@ -84,6 +138,7 @@ const renderReviews = (itemArr) => {
 const loadReviews = (id) => {
   $.get(`api/items/reviews/${id}`)
     .then((res) => {
+      res.item.reverse();
       renderReviews(res.item);
     })
     .catch((err) => console.log(err));
@@ -111,7 +166,7 @@ const loadDetails = (id) => {
           $outterContainer.hide();
           const $itemDetails = createItemDetails(res.item, favoriteItemIDs);
           $(".navbar").after($itemDetails);
-          $('.btn-delete').show();
+          $(".btn-delete").show();
           loadReviews(id);
         })
         .catch((err) => console.log(err));

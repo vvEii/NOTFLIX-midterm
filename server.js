@@ -60,6 +60,8 @@ const submitRoute = require("./routes/submit");
 
 
 
+// review routes
+const reviewRoutes = require('./routes/review');
 
 
 // Mount all resource routes
@@ -73,13 +75,7 @@ app.use('/categories', categoriesRoutes(db));
 app.use('/favorite',favoriteRoutes(db));
 app.use("/cart", cartRoute(db));
 app.use("/submit", submitRoute(db));
-
-
-
-// Separated Routes for each Resource
-// Note: Feel free to replace the example routes below with your own
-// const usersRoutes = require("./routes/users");
-// const widgetsRoutes = require("./routes/widgets");
+app.use('/review', reviewRoutes(db));
 
 // Home page
 // Warning: avoid creating more routes in this file!
@@ -92,7 +88,7 @@ app.get("/", (req, res) => {
         is_admin: null
       }
     }
-    res.render("index", templateVar); 
+    res.render("index", templateVar);
   } else {
     templateVar = {
       user : req.session.user_info
