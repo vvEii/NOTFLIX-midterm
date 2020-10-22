@@ -2,11 +2,27 @@
 $(() => {
   // again this won't work
   //$(".btn-add-review").on("click", showNewReview);
+  //$(".btn-submit-review").click(addReview);
 });
+
+const addReview = () => {
+  const rating = $("#new-review-rating").val();
+  const message = $("#review-text").val();
+  const itemID = $("#item-id").text();
+
+  const review = {
+    rating,
+    message,
+    itemID,
+  };
+  $.post("", review)
+    .then((res) => console.log(res))
+    .catch((err) => console.log(err));
+};
 
 const showNewReview = () => {
   const $newReviewContainer = $(".new-review-container");
-  if ($newReviewContainer.css('display') === 'none') {
+  if ($newReviewContainer.css("display") === "none") {
     $newReviewContainer.slideDown("slow");
     const $textArea = $("#review-text");
     $textArea.focus();
@@ -95,7 +111,7 @@ const renderReviews = (itemArr) => {
     <h5>Rating(range from 0.00 to 5.00, 2 decimal places)</h5>
     <input type="text" id="new-review-rating"></input>
     </div>
-    <button class="btn-submit-review" type="submit">add</button>
+    <button class="btn-submit-review" onclick="addReview()">add</button>
     </div>
   </div>
   `;
