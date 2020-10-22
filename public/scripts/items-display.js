@@ -43,8 +43,10 @@ const createItem = (item) => {
       <img src=${thumbnail} class="card-img-top item-img-${id}" alt="Image">
       <div class="card-body">
         <h5 class="card-title item-name-${id}">${name}</h5>
+        <div class="card-body-bottom">
         <p> ${price}</p>
         <p> <span class="fa fa-star checked"></span> ${rating}</p>
+        </div>
       </div>
     </div>
   </div>
