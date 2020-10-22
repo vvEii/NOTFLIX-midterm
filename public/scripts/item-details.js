@@ -16,7 +16,14 @@ const addReview = () => {
     itemID,
   };
   $.post("/review/add", review)
-    .then((res) => console.log(res))
+    .then((res) => {
+      if (res) {
+        $('.box-reviews').empty();
+        loadReviews(itemID);
+      } else {
+        console.log("add review failed");
+      }
+    })
     .catch((err) => console.log(err));
 };
 
@@ -131,6 +138,7 @@ const renderReviews = (itemArr) => {
 const loadReviews = (id) => {
   $.get(`api/items/reviews/${id}`)
     .then((res) => {
+      res.item.reverse();
       renderReviews(res.item);
     })
     .catch((err) => console.log(err));
