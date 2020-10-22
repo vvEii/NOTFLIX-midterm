@@ -4,7 +4,6 @@ const router = express.Router();
 //delete 
 module.exports = (db) => { 
   router.post('/:id', (req, res) => {
-  
     const deleteMovie = `DELETE FROM items WHERE id = $1;`;
     const values = [req.params.id];
 

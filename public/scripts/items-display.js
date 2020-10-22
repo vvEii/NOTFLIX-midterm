@@ -59,17 +59,17 @@ const createItemDetails = (items) => {
   </div>
   <div class="box-info">
     <h3>${name}</h3>
+    <hr>
+    <div class="section-one">
     <h5 class="currency">CDN ${price}</h5>
     <h5><span class="fa fa-star checked"></span> ${rating}</h5>
-    <h5>Stocks: ${stock}</h5>
+    </div>
+    <h5> In stock: ${stock}</h5>
     <h5>Description:</h5>
     <p>${description}</p>
     </div>
     <div class="box-reviews"></div>
     </div>
-    <form class="form-delete" action="/delete/${item.id}" method="POST">
-    <button class="delete-btn" type="submit">Delete</button>
-    </form>
   `;
   return $item;
 };
@@ -168,6 +168,7 @@ const loadDetails = (id) => {
     .then((res) => {
       const $outterContainer = $(".outter-container");
       $outterContainer.hide();
+      $('.delete-btn').show();
       const $itemDetails = createItemDetails(res.item);
       $(".navbar").after($itemDetails);
       loadReviews(id);
@@ -179,6 +180,7 @@ const loadDetails = (id) => {
 const loadItems = () => {
   const $itemListContainer = $(".item-list-container");
   $itemListContainer.empty();
+  $('.delete-btn').hide();
 
   $.get("/api/items/all")
     .then((res) => {

@@ -47,6 +47,11 @@
     <footer>
      Footer
      <%- include('partials/_chat-feature') %>
+     <% if (is_admin) {%> 
+      <form class="form-delete" action="/delete/${item.id}" method="POST"> 
+        <button class="delete-btn" type="submit">Delete</button>
+      </form>
+     <% } %>
     </footer>
   </body>
 </html>

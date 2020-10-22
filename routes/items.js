@@ -13,6 +13,7 @@ module.exports = (db) => {
   router.get("/all", (req, res) => {
     let queryString =
       "SELECT items.*, AVG(rating) AS avg_rating FROM items LEFT JOIN reviews ON items.id = item_id GROUP BY items.id;";
+    
     db.query(queryString)
       .then((data) => {
         const items = data.rows;
@@ -62,6 +63,14 @@ module.exports = (db) => {
     let queryString =
       "SELECT items.*, AVG(rating) AS avg_rating FROM items LEFT JOIN reviews ON items.id = item_id WHERE items.id = $1 GROUP BY items.id;";
     const value = [req.params.id];
+
+    // let queryStringAdmin = ` SELECT * FROM users WHERE is_admin = true;`;
+  
+    // db.query(queryStringAdmin)
+    // .then(users => {
+    //   return users.rows[0];
+    // });
+
     db.query(queryString, value)
       .then((data) => {
         const item = data.rows;

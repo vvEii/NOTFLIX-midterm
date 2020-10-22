@@ -17,16 +17,22 @@
     .checked {
       color: $star-color;
     }
+    .section-one {
+      display: flex;
+      justify-content: space-between;
+      padding-top:5px;
+      font-family: Arial, Helvetica, sans-serif;
+    }
     grid-area: right-top;
   }
   .box-reviews {
     grid-area: right-bottom;
+    margin-top: 40px;
   }
 }
 //form
 .form-delete {
   border-radius: 5px;
-  margin: 10px 200px 10px 200px;
   display: flex;
   justify-content: center;
 
