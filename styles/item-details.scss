@@ -53,3 +53,62 @@
     color: black;
   }
 }
+
+.descrip-title {
+  font-size: 15px;
+  background-color: beige;
+}
+
+.description:hover {
+  box-shadow: 5px 10px #888888;
+}
+
+.description {
+  margin-top: 20px;
+}
+
+.review-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: beige;
+}
+
+.review-text {
+  font-size: 15px ;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 0px;
+}
+
+.fa-star {
+  color: orange;
+}
+
+.review-people {
+  display: flex;
+  justify-content: space-between;
+}
+
+.review-sites {
+  margin-top: 5px;
+  border: 2px solid black;
+  padding-left: 3px;
+  padding-right: 3px;
+}
+.reviewer-name {
+  font-size: 20px ;
+}
+
+.rating-handle, p .fa-star {
+  color: transparent
+}
+
+.rating-handle:hover {
+  background: orange;
+}
+
+section:hover {
+  box-shadow: 5px 10px #888888;
+}
+

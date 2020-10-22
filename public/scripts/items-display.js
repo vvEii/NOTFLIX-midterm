@@ -29,8 +29,10 @@ const createReview = (item) => {
 
   const rating = Number.parseFloat(item.rating).toFixed(2);
   let $reviews = `
-  <p><span class="fa fa-star checked"></span>${rating}/5</p>
-  <h3>From ${item.name}</h3><p>${item.message}</p>
+  <section class="review-sites">
+  <div class="review-people"><h3 class="reviewer-name">${item.name}</h3> <p class="rating-handle"><span class="fa fa-star checked"></span> ${rating}/5</p> </div>
+  <p>${item.message}</p>
+  </section>
   `;
   return $reviews;
 };
@@ -64,9 +66,11 @@ const createItemDetails = (items) => {
     <h5 class="currency">CDN ${price}</h5>
     <h5><span class="fa fa-star checked"></span> ${rating}</h5>
     </div>
-    <h5> In stock: ${stock}</h5>
-    <h5>Description:</h5>
+    <h6> In stock: ${stock}</h6>
+    <div class="description">
+    <h6 class= "descrip-title"><strong>Description:</strong></h6>
     <p>${description}</p>
+    </div>
     </div>
     <div class="box-reviews"></div>
     </div>
@@ -123,7 +127,7 @@ const renderReviews = (itemArr) => {
     const $noReviews = `<h5>No comments yet.</h5>`;
     $(".box-reviews").append($noReviews);
   } else {
-    let $reviewTitle = "<h3>Reviews</h3>";
+    let $reviewTitle = '<div class="review-title"> <span class="fa fa-star checked"></span> <span class="fa fa-star checked"></span> <span class="fa fa-star checked"></span> <h3 class="review-text"><strong>Reviews</strong></h3> <span class="fa fa-star checked"></span> <span class="fa fa-star checked"></span> <span class="fa fa-star checked"></span></div>';
     $(".box-reviews").append($reviewTitle);
     itemArr.forEach((ele) => {
       const $itemReview = createReview(ele);
