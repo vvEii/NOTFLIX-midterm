@@ -1,0 +1,90 @@
+
+@import "base";
+
+body {
+  background-image: url(/images/classics.jpg);
+  background-size: 2200px 1200px;
+  background-position: center;
+  color: $tertiary-color;
+
+  .container {
+    margin-top: 60px;
+    margin-bottom: 60px;
+    background: black;
+    opacity: 0.8;
+    padding: 20px;
+    width: 800px;
+    border-radius: 5px;
+
+    .title-cart {
+      font-family: 'Fascinate', cursive, sans-serif;
+      font-size: 50px;
+      margin-bottom: 20px;
+      padding-top: 20px;
+      text-align: center;
+    }
+
+    .table td, .table th {
+      padding: 0.5rem;
+      vertical-align: middle;
+
+    }
+     .text-style {
+        color: $tertiary-color;
+      }
+  }
+}
+
+.payment-details {
+  padding: 9px;
+
+  .icon-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+      span {
+        font-family: 'Fascinate', cursive, sans-serif;
+        font-size: 25px;
+        margin-right: 5px;
+      }
+  }
+  hr {
+    color: $tertiary-color;
+    border: 2px solid;
+    margin: 5px 0px;
+  }
+  .cc-info{
+    display: flex;
+    justify-content: space-between;
+  }
+  .cc-details {
+    margin-top: 15px;
+    display:flex; 
+    justify-content: space-around;
+
+    #expmonth, #expyear, #cvv {
+      width: 20%
+    }
+  }
+
+  .checkout-button {
+    margin-top: 10px;
+  }
+  input[type=text] {
+    padding: 2px;
+    width: 100%;
+    border: none;
+    border-radius: 3px;
+  }
+}
+
+
+
+
+
+
+
+
+
+
