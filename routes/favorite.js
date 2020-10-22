@@ -37,5 +37,21 @@ module.exports = (db) => {
       })
       .catch((err) => console.log(err));
   });
+
+  // return the favorite items with user_id stored in the session
+  router.get("/list", (req, res) => {
+    const queryString = `
+    SELECT DISTINCT item_id FROM favorite_items WHERE user_id = $1;;
+    `;
+    console.log(req.session.user_info.id);
+    const value = [req.session.user_info.id];
+    db.query(queryString, value)
+      .then((data) => {
+        const favoriteList = data.rows;
+        res.json({ favoriteList });
+      })
+      .catch((err) => console.log(err));
+  });
+
   return router;
 };

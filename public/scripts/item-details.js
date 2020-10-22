@@ -11,7 +11,7 @@ const createReview = (item) => {
 };
 
 // create item details element
-const createItemDetails = (items) => {
+const createItemDetails = (items, favoriteItemIDs) => {
   const item = items[0];
   const itemID = item.id;
   const name = item.name;
@@ -22,6 +22,14 @@ const createItemDetails = (items) => {
   //const is_sold = item.is_sold;
   const thumbnail = item.thumbnail_url;
   //const cover = item.cover_url;
+  let $favoriteEle = "";
+  if (favoriteItemIDs.includes(itemID)) {
+    $favoriteEle =
+      '<div class="un-favorite"> <i class="fas fa-heart fa-2x"></i></div>';
+  } else {
+    $favoriteEle =
+      '<div class="un-favorite" onClick="addFavorite()"><i class="far fa-heart fa-2x"></i></div>';
+  }
 
   if (isNaN(rating)) {
     rating = "no ratings";
@@ -36,7 +44,7 @@ const createItemDetails = (items) => {
   <div class="box-info">
   <div class="box-name-heart">
     <h3 >${name}</h3>
-    <div class="un-favorite" onClick="addFavorite()"><i class="far fa-heart fa-2x"></i></div>
+    ${$favoriteEle}
   </div>
     <h5 class="currency">CDN ${price}</h5>
     <h5><span class="fa fa-star checked"></span> ${rating}</h5>
@@ -84,13 +92,22 @@ const loadDetails = (id) => {
   // $image.removeEventListener("click", loadDetails);
   // $name.removeEventListener("click", loadDetails);
 
-  $.get(`/api/items/details/${id}`)
+  $.get("favorite/list")
     .then((res) => {
-      const $outterContainer = $(".outter-container");
-      $outterContainer.hide();
-      const $itemDetails = createItemDetails(res.item);
-      $(".navbar").after($itemDetails);
-      loadReviews(id);
+      const favoriteItemIDs = [];
+      res.favoriteList.forEach((ele) => favoriteItemIDs.push(ele.item_id));
+      return favoriteItemIDs;
+    })
+    .then((favoriteItemIDs) => {
+      $.get(`/api/items/details/${id}`)
+        .then((res) => {
+          const $outterContainer = $(".outter-container");
+          $outterContainer.hide();
+          const $itemDetails = createItemDetails(res.item, favoriteItemIDs);
+          $(".navbar").after($itemDetails);
+          loadReviews(id);
+        })
+        .catch((err) => console.log(err));
     })
     .catch((err) => console.log(err));
 };
