@@ -1,7 +1,18 @@
-.submit_message {
-  margin-top: 30vh ;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+@import "base";
+
+body {
+  background-image: url(/images/classics.jpg);
+  background-size: 2200px 1200px;
+  color: $tertiary-color;
+  background-position: center;
+
+  .submit_message {
+    margin-top: 30vh ;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: black;
+    opacity: 0.8;
+  }
 }
