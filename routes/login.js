@@ -32,6 +32,7 @@ module.exports = (db) => {
   })
     .post('/', (req,res) => {
       const { email, password } = req.body;
+      console.log(req.params);
       login(email, password)
         .then(user => {
           if (!user) {

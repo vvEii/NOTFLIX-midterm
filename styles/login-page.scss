@@ -7,7 +7,7 @@ body {
 } 
 
 nav {
-  height: 120px;
+  height: 200px;
   width: 100vw; 
   padding: 1.5em;
   color: whitesmoke; 
@@ -17,7 +17,7 @@ nav {
   position: fixed; 
   top: 0;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
 }
 
 input[type=email], input[type=password] {

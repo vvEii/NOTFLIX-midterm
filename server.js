@@ -53,6 +53,13 @@ const deleteItem = require("./routes/deleteItem");
 const categoriesRoutes = require('./routes/categories');
 // favorite routes
 const favoriteRoutes = require('./routes/favorite');
+// cart route
+const cartRoute = require("./routes/cart");
+//submit order
+const submitRoute = require("./routes/submit");
+
+
+
 
 
 // Mount all resource routes
@@ -64,19 +71,33 @@ app.use("/add", addItemRoutes(db));
 app.use("/delete", deleteItem(db));
 app.use('/categories', categoriesRoutes(db));
 app.use('/favorite',favoriteRoutes(db));
+app.use("/cart", cartRoute(db));
+app.use("/submit", submitRoute(db));
+
+
+
+// Separated Routes for each Resource
+// Note: Feel free to replace the example routes below with your own
+// const usersRoutes = require("./routes/users");
+// const widgetsRoutes = require("./routes/widgets");
 
 // Home page
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 app.get("/", (req, res) => {
-  let user_info = {};
-  if (!req.session.user_info) {
-    user_info = {
-      name: null,
-      is_admin: null,
-    };
+  if (!req.session.user_info){
+    templateVar = {
+      user : {
+        name : null,
+        is_admin: null
+      }
+    }
+    res.render("index", templateVar); 
   } else {
-    user_info = req.session.user_info;
+    templateVar = {
+      user : req.session.user_info
+    }
+    res.render("index", templateVar);
   }
   res.render("index", user_info);
 });

@@ -18,3 +18,4 @@ insert into users (name, password, email, phone_number, is_admin) values ('Nowel
 insert into users (name, password, email, phone_number, is_admin) values ('Morley Marcu', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.', 'mmarcuh@japanpost.jp', '864-806-0755', null);
 insert into users (name, password, email, phone_number, is_admin) values ('Fifine Duffin', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.', 'fduffini@ed.gov', '689-264-5336', true);
 insert into users (name, password, email, phone_number, is_admin) values ('Brigitte Dwire', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.', 'bdwirej@china.com.cn', '102-341-9439', null);
+insert into users (name, password, email, phone_number, is_admin) values ('Mohammed', '$2b$12$4MfKaoDlPyUD4pyElRHMcefZTo021Nvz5ZMYljcN8PjiO.CehMQ/a', 'mohamedsa1990@gmail.com', '403-975-3208', true);

@@ -10,16 +10,15 @@
         <li class="nav-item active">
           <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
         </li>
-        <% if (is_admin) {%>
+        <% if (user.is_admin) {%>
         <li class="nav-item active">
           <a class="nav-link" href="/add">Add Movie</a> <span class="sr-only">(current)</span></a>
         </li>
         <% } %>
         <li class="nav-item active">
-          <a class="nav-link favorite-link " >My Fav <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item active">
-          <a class="nav-link" href="#">My Cart</a>
+          <a class="nav-link favorite-link" href="#">My Fav <span class="sr-only">(current)</span></a>
+        </li><li class="nav-item active">
+          <a class="nav-link" href="/cart">My Cart</a>
         </li>
       </ul>
     </div>
@@ -29,10 +28,10 @@
         <button class="btn" type="button" id="button-addon2">Search</button>
       </div>
     </div> -->
-    <% if (name) {%>
+    <% if (user.name) {%>
     <form class="navbar-nav form-inline my-2 my-lg-0" method="POST" action="/logout" id="form">
-      <span class="navbar-text text-white ">Welcome <%= name %></span>
-      <button class="btn my-2 my-sm-0" type="submit">Logout</button>
+      <span class="navbar-text text-white bg-dark">Welcome <%= user.name %></span>
+      <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Logout</button>
     </form>
     <% } else { %>
     <div class="navbar-nav" id="login">
