@@ -23,6 +23,7 @@ const createItemDetails = (items, favoriteItemIDs) => {
   const thumbnail = item.thumbnail_url;
   //const cover = item.cover_url;
   let $favoriteEle = "";
+  // check if the current item is in current user's favorite list
   if (favoriteItemIDs.includes(itemID)) {
     $favoriteEle =
       '<div class="un-favorite"> <i class="fas fa-heart fa-2x"></i></div>';
