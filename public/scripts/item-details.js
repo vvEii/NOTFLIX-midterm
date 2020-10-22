@@ -35,7 +35,7 @@ const createItemDetails = (items) => {
   </div>
   <div class="box-info">
   <div class="box-name-heart">
-    <h3 class="favorite-link" >${name}</h3>
+    <h3 >${name}</h3>
     <div class="un-favorite" onClick="addFavorite()"><i class="far fa-heart fa-2x"></i></div>
   </div>
     <h5 class="currency">CDN ${price}</h5>

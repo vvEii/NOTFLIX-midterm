@@ -10,7 +10,17 @@ nav {
   .navbar-text {
     margin: 0 10px 0 10px;
   }
-  .navbar-nav .btn {
-    color: $secondary-color;
+  .navbar-nav {
+    .btn {
+      color: $secondary-color;
+    }
+    .favorite-link {
+      .my-badge {
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        color: $primary-color;
+      }
+    }
   }
 }
