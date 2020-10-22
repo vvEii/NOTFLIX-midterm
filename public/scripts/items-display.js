@@ -30,8 +30,8 @@ const createReview = (item) => {
   const rating = Number.parseFloat(item.rating).toFixed(2);
   let $reviews = `
   <section class="review-sites">
-  <div class="review-people"><h3 class="reviewer-name">${item.name}</h3> <p class="rating-handle"><span class="fa fa-star checked"></span> ${rating}/5</p> </div>
-  <p>${item.message}</p>
+  <div class="review-people"><h3 class="reviewer-name">${item.name}</h3><p class="rating-handle"><span class="fa fa-star checked"></span> ${rating}/5</p> </div>
+  <p class="detail-review">${item.message}</p>
   </section>
   `;
   return $reviews;

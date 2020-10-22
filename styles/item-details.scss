@@ -88,27 +88,24 @@
 .review-people {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .review-sites {
   margin-top: 5px;
   border: 2px solid black;
-  padding-left: 3px;
-  padding-right: 3px;
+  border-radius: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 .reviewer-name {
   font-size: 20px ;
-}
-
-.rating-handle, p .fa-star {
-  color: transparent
-}
-
-.rating-handle:hover {
-  background: orange;
 }
 
 section:hover {
   box-shadow: 5px 10px #888888;
 }
 
+.detail-review {
+  font-size: 12px;
+}
