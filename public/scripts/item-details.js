@@ -18,8 +18,8 @@ const addReview = () => {
   $.post("/review/add", review)
     .then((res) => {
       if (res) {
-        $('.box-reviews').empty();
-        loadReviews(itemID);
+        //$('.box-reviews').empty();
+        //loadReviews(itemID);
       } else {
         console.log("add review failed");
       }
@@ -165,7 +165,7 @@ const loadDetails = (id) => {
           const $outterContainer = $(".outter-container");
           $outterContainer.hide();
           const $itemDetails = createItemDetails(res.item, favoriteItemIDs);
-          $(".navbar").after($itemDetails);
+          $("nav").after($itemDetails);
           $(".btn-delete").show();
           loadReviews(id);
         })
