@@ -23,5 +23,8 @@ module.exports = (db) => {
       .catch((err) => res.status(500).json({ error: err.message }));
   });
 
+  router.post('/add',(req,res) => {
+    console.log(req.body.itemID);
+  });
   return router;
 };

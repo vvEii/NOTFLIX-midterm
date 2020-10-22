@@ -2,10 +2,27 @@
 /* eslint-disable camelcase */
 $(() => {
   $(".favorite-link").on("click", loadFavorite);
+  // add listener is not working
+  // $("far .fa-heart .fa-2x").on("click", addFavorite);
+  // this is not working too
+  // $(".un-favorite").on("click",addFavorite);
 });
 
+const addFavorite = function () {
+  const $favoritedIcon = '<i class="fas fa-heart fa-2x"></i>';
+  $(".un-favorite").empty();
+  $(".un-favorite").append($favoritedIcon);
+
+  const itemID = $("#item-id").text();
+  $.post("favorite/add",{itemID})
+    .then((res) => {
+
+    })
+    .catch((err) => console.log(err));
+};
+
 const loadFavorite = () => {
-  console.log('click me');
+  console.log("click me");
   $.get("/favorite")
     .then((res) => {
       const allFavorites = res.items;
