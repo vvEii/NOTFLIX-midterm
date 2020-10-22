@@ -31,6 +31,7 @@ module.exports = (db) => {
   })
     .post('/', (req,res) => {
       const { email, password } = req.body;
+      console.log(req.params);
       login(email, password)
         .then(user => {
           if (!user) {
@@ -38,7 +39,6 @@ module.exports = (db) => {
             return;
           }
           req.session.user_info = user;
-          console.log (req.session.user_info);
           res.redirect('/');
         })
         .catch(console.log);

@@ -40,11 +40,10 @@ module.exports = (db) => {
           res.status(401).send({ error: "Email already in system!" });
           return;
         }
-        req.session.user_id = user.email;
+        req.session.user_info = user;
         res.redirect('/');
       })
       .catch(e => {
-        //res.send(e)
         console.log(e)
       });
   });
