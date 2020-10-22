@@ -106,6 +106,7 @@ const loadDetails = (id) => {
           $outterContainer.hide();
           const $itemDetails = createItemDetails(res.item, favoriteItemIDs);
           $(".navbar").after($itemDetails);
+          $('.btn-delete').show();
           loadReviews(id);
         })
         .catch((err) => console.log(err));

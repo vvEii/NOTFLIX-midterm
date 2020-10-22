@@ -19,10 +19,14 @@
     <script type="text/javascript" src="/scripts/item-details.js"></script>
     <script type="text/javascript" src="/scripts/category.js"></script>
     <script type="text/javascript" src="/scripts/favorite.js"></script>
+    <script type="text/javascript" src="/scripts/item-delete.js"></script>
   </head>
-  
+
   <body>
     <%- include('partials/_header') %>
+    <% if (is_admin) {%>
+      <button class="btn-delete">delete</button>
+    <% } %>
     <div class="outter-container">
     <div class="filter-container">
       <p class="item-amount"></p>
@@ -56,14 +60,7 @@
     </div>
     </div>
   </div>
-    <footer>
-     Footer
-     <%- include('partials/_chat-feature') %>
-     <% if (is_admin) {%> 
-      <form class="form-delete" action="/delete/${item.id}" method="POST"> 
-        <button class="delete-btn" type="submit">Delete</button>
-      </form>
-     <% } %>
-    </footer>
+  <%- include('partials/_chat-feature') %>
   </body>
+
 </html>
