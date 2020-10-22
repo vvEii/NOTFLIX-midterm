@@ -1,18 +1,16 @@
 /* eslint-disable no-undef */
-$(() =>{
-  $('.btn-add-review').on('click',showNewReview);
+$(() => {
+  $(".btn-add-review").on("click", showNewReview);
 });
 
 const showNewReview = () => {
-  console.log('ss');
-  const $newReviewContainer = $('.review-btn-container');
-  if ($newReviewContainer.is(':hidden')) {
-    console.log('ss');
-    $newReviewContainer.slideDown('slow');
-    const $textArea = $('#tweet-text');
+  const $newReviewContainer = $(".new-review-container");
+  if ($newReviewContainer.css('display') === 'none') {
+    $newReviewContainer.slideDown("slow");
+    const $textArea = $("#review-text");
     $textArea.focus();
   } else {
-    $newReviewContainer.slideUp('slow');
+    $newReviewContainer.slideUp("slow");
   }
 };
 
@@ -81,18 +79,16 @@ const createItemDetails = (items, favoriteItemIDs) => {
 
 // render item reviews
 const renderReviews = (itemArr) => {
-  let $reviewTitle = `<div class="review-btn-container">
-  <h3>Reviews</h3>
-  <button class="btn-add-review">Add Reviews</button>
+  let $reviewTitle = `
+  <div class="review-title-container">
+    <span class="review-title">Reviews</span>
+    <button class="btn-add-review" onClick="showNewReview()">Add Reviews</button>
   </div>
-  <form>
   <div class="new-review-container">
-  <textarea name="text" id="tweet-text"></textarea>
-  <div>
-    <button type="submit">Tweet</button
+    <textarea name="text" id="review-text"></textarea>
+    <button type="submit">add</button>
   </div>
-  </div>
-</form>`;
+  `;
   $(".box-reviews").append($reviewTitle);
   if (itemArr.length === 0) {
     const $noReviews = `<h5>No comments yet.</h5>`;
@@ -136,7 +132,7 @@ const loadDetails = (id) => {
           $outterContainer.hide();
           const $itemDetails = createItemDetails(res.item, favoriteItemIDs);
           $(".navbar").after($itemDetails);
-          $('.btn-delete').show();
+          $(".btn-delete").show();
           loadReviews(id);
         })
         .catch((err) => console.log(err));
