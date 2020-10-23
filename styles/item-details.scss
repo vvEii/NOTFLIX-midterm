@@ -24,6 +24,10 @@
   grid-template-rows: 40% 60%;
   grid-template-areas: "left right-top" "left right-bottom";
   .box-image {
+    img{
+      width: 450px;
+      height: 600px;
+    }
     margin: 0 auto;
     grid-area: left;
   }
@@ -86,22 +90,19 @@
         background-color: white;
         border: none;
         font-size: 1.4rem;
-        &:active {
-          border: none;
-        }
         &:hover {
-          font-size: 1.5rem;
-        }
-        &:visited {
-          border: none;
+          font-weight: bold;
         }
         &:focus {
-          border: none;
+          outline: none;
         }
       }
     }
     .new-review-container {
       display: none;
+      #review-text:focus{
+        outline:none;
+      }
       .flex-container {
         display: flex;
         flex-direction: column;
@@ -137,7 +138,7 @@
     margin-top: .5rem;
     .user-name{
       color: #838383;
-      font-size: 1.5rem;
+      font-size: 1.2rem;
     }
     .checked{
       color: $star-color;

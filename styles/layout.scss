@@ -2,7 +2,7 @@
 @import "base";
 
 body {
-  background-color: #eee;
+  background-color: #FCFDFF;
 
   .filter-container {
     display: flex;
@@ -10,10 +10,15 @@ body {
     align-items: center;
     margin: 1rem;
     #filter {
-      background-color: $secondary-color;
+      background-color: #E6E7E9;
       padding: 0.5rem;
       border: none;
+      &:focus {
+        outline: none;
+        border: none;
+      }
     }
+
     .item-amount {
       margin-bottom: 0;
     }
@@ -32,7 +37,6 @@ body {
       .list-group-item {
         padding: 0.75rem 0.25rem !important;
       }
-
     }
   }
 

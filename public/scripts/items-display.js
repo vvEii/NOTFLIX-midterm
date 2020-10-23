@@ -44,8 +44,8 @@ const createItem = (item) => {
       <div class="card-body">
         <h5 class="card-title item-name-${id}">${name}</h5>
         <div class="card-body-bottom">
-        <p> ${price}</p>
-        <p> <span class="fa fa-star checked"></span> ${rating}</p>
+        <h5> ${price}</h5>
+        <h5> <span class="fa fa-star checked"></span> ${rating}</h5>
         </div>
       </div>
     </div>
