@@ -14,12 +14,12 @@ nav {
   padding: 1.5em;
   color: whitesmoke;
   font-family: Bungee Shade;
-  font-size: 30px;
+
   overflow:hidden;
   position: fixed;
   top: 0;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
 }
 
 input[type=email], input[type=password] {
