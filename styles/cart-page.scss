@@ -17,10 +17,8 @@ body {
     border-radius: 5px;
 
     .title-cart {
-      font-family: 'Fascinate', cursive, sans-serif;
-      font-size: 50px;
+      font-size: 2.5rem;
       margin-bottom: 20px;
-      padding-top: 20px;
       text-align: center;
     }
 
@@ -42,16 +40,14 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-  
       span {
-        font-family: 'Fascinate', cursive, sans-serif;
-        font-size: 25px;
+        font-size: 2.5rem;
         margin-right: 5px;
       }
   }
   hr {
     color: $tertiary-color;
-    border: 2px solid;
+    border: 1px solid;
     margin: 5px 0px;
   }
   .cc-info{
@@ -60,7 +56,7 @@ body {
   }
   .cc-details {
     margin-top: 15px;
-    display:flex; 
+    display:flex;
     justify-content: space-around;
 
     #expmonth, #expyear, #cvv {
@@ -69,7 +65,10 @@ body {
   }
 
   .checkout-button {
-    margin-top: 10px;
+    margin-top: 1rem;
+    a:hover{
+      text-decoration:none;
+    }
   }
   input[type=text] {
     padding: 2px;
