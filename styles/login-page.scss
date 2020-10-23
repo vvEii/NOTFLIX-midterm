@@ -71,6 +71,10 @@ button:hover {
       opacity: .8;
     }
   }
+  button:focus{
+    outline:none;
+    box-shadow: 0 0 2pt 2pt $secondary-color-hover;
+  }
 }
 
 .login-header {
